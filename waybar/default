@@ -1,0 +1,150 @@
+{
+    "custom/wlogout": {
+        "format": "",
+            "interval": "once",
+            "on-click": "wlogout -c 5 -r 5 -p layer-shell"
+    },
+        "wlr/workspaces": {
+            "on-click": "activate",
+            "format": "{icon}",
+            "on-scroll-up": "hyprctl dispatch workspace e+1",
+            "on-scroll-down": "hyprctl dispatch workspace e-1",
+            "format-icons": {
+                "1": "",
+                "2": "",
+                "3": "",
+                "4": "",
+                "5": "",
+                "urgent": "",
+                "default": ""
+            }
+        },
+        "hyprland/window": {
+            "format": "{}",
+            "rewrite": {
+                "(.*) - Google Chrome": "🌎 chrome",
+                "org.pwmt.zathura": "📰 zathura",
+                "Spotify": "🎼 spotify",
+            }
+        },
+        "cava": {
+            "cava_config": "~/.config/cava/config",
+            "framerate": 30,
+            "autosens": 1,
+            "sensitivity": 100,
+            "bars": 14,
+            "lower_cutoff_freq": 50,
+            "higher_cutoff_freq": 10000,
+            "method": "pulse",
+            "source": "auto",
+            "stereo": true,
+            "reverse": false,
+            "bar_delimiter": 0,
+            "monstercat": false,
+            "waves": false,
+            "noise_reduction": 0.77,
+            "input_delay": 2,
+            "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+            "actions": {
+                "on-click-right": "mode"
+            }
+        },
+        "tray": {
+            "icon-size" :35,
+            "spacing": 10
+        },
+        "clock": {
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "format": "{:%a %d, %b \n %I:%M %p }",
+            "format-alt": "{:%Y-%m-%d}"
+        },
+        "cpu": {
+            "format": " {usage}%",
+            "tooltip": true
+        },
+        "memory": {
+            "format": " {}%"
+        },
+        "disk": {
+            "format": " {percentage_used}%"
+        },
+        "temperature": {
+            "format": " {temperatureC}°C"
+        },
+        "network": {
+            "interval": 1,
+            "format-wifi": " ",
+            "format-ethernet": "",
+            "tooltip-format": " {ifname} via {gwaddr}",
+            "format-linked": " {ifname} (No IP)",
+            "format-disconnected": " Disconnected",
+            "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        },
+        "pulseaudio": {
+            "format": "{icon} {volume}%",
+            "format-bluetooth": "{icon} {volume}%",
+            "format-muted": "",
+            "format-icons": {
+                "headphone": "",
+                "default": ["", ""]
+            },
+            "scroll-step": 1,
+            "on-click": "pavucontrol",
+            "ignored-sinks": ["Easy Effects Sink"]
+        },
+        "bluetooth": {
+            "format": "",
+            "format-disabled": "", // an empty format will hide the module
+            "format-connected": " {num_connections}",
+            "tooltip-format": "{controller_alias}\t{controller_address}",
+            "tooltip-format-connected": "{controller_alias}\t{controller_address}\n{device_enumerate}",
+            "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+            "on-click": "blueman-manager"
+        },
+        "custom/separator-right": {
+            "format": "",
+            "tooltip": false
+        },
+        "custom/separator-left": {
+            "format": "",
+            "tooltip": false
+        },
+        "custom/github": {
+            "format": " {}",
+            "return-type": "json",
+            "interval": 60,
+            "exec": "$HOME/.config/waybar/scripts/github.sh",
+            "on-click": "xdg-open https://github.com/notifications"
+        },
+        "custom/updates": {
+            "format": "{icon} {}",
+            "return-type": "json",
+            "format-icons": {
+                "has-updates": "󱍷",
+                "updated": "󰂪"
+            },
+            "exec-if": "which waybar-module-pacman-updates",
+            "exec": "waybar-module-pacman-updates"
+        },
+        "custom/spotify": {
+            "exec": "$HOME/.config/waybar/scripts/spotify.sh",
+            "max-length": 40,
+            "format": " {}",
+            "on-click": "playerctl play-pause",
+            "on-double-click": "playerctl next",
+        },
+        "group/stats": {
+            "orientation": "horizontal",
+            "modules": ["temperature", "cpu", "memory", "disk"]
+        },
+        "group/notifications": {
+            "orientation": "horizontal",
+            "modules": [
+                "pulseaudio",
+                "network",
+                "bluetooth",
+                "custom/github",
+                "custom/updates",
+            ]
+        }
+}

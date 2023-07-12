@@ -1,280 +1,178 @@
+/* @import "frappe.css"; */
+@import "macchiato.css";
+
+/**
+* Custom styling for a catppuccin style waybar
+* Config settings listed in order from left -> right on bar
+* */
+
+/**
+* Global configuration for theme 
+* */
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+  font-family: Liga SFMono Nerd Font;
+  font-size: 25px;
+  border-radius: 1.00em;
 }
 
-window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
+/* Primary monitor configuration */
+#notifications,
+#workspaces {
+  margin: 0.5em;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: @peach;
+  font-weight: bold;
+  background-color: @surface0;
+  border: 2px solid @surface1;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+/* Wlr/workspaces configuration  */
+#window,
+#workspaces {
+  color: @peach;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
-
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+#workspaces label {
+  font-size: 35px;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
+  padding: 0 0.5em;
+  background-color: @surface0;
+  color: @text;
+  margin: 0.25em;
 }
 
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+#workspaces button.active {
+  color: @blue;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+  background-color: @red;
+  color: @text;
 }
 
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+/* window */
+window#waybar {
+  border: 2px solid @surface1;
+  background: @base;
+  box-shadow: 1px 1px 10px 10px @mantle;
+  color: @text;
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#mpd {
-    padding: 0 10px;
-    color: #ffffff;
+window#waybar.hidden {
+  opacity: 0.2;
 }
 
-#window,
-#workspaces {
-    margin: 0 4px;
+tooltip {
+  background: @base;
+  border: 1px solid @blue;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-#clock {
-    background-color: #64727D;
-}
-
-#battery {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+tooltip label {
+  color: white;
 }
 
 label:focus {
-    background-color: #000000;
+  background-color: #000000;
 }
 
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
+}
+
+/* Remove border from parent waybar */
+box {
+  border: none;
+}
+
+
+/* Add spacing for right side modules */
+#tray{
+  padding: 0 1em;
+}
+
+#custom-updates,
+#custom-github,
+#cpu,
+#temperature,
+#memory,
+#disk,
+#bluetooth,
+#pulseaudio,
+#network {
+  padding: 0 0.5em;
+}
+
+/* Unique colors for modules */
 #cpu {
-    background-color: #2ecc71;
-    color: #000000;
+  color: @red;
 }
 
 #memory {
-    background-color: #9b59b6;
-}
-
-#disk {
-    background-color: #964B00;
-}
-
-#backlight {
-    background-color: #90b1b1;
-}
-
-#network {
-    background-color: #2980b9;
-}
-
-#network.disconnected {
-    background-color: #f53c3c;
-}
-
-#pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
-}
-
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
-}
-
-#wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
-}
-
-#wireplumber.muted {
-    background-color: #f53c3c;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
+  color: @yellow;
 }
 
 #temperature {
-    background-color: #f0932b;
+  color: @blue;
+}
+
+#network {
+  color: @yellow;
+}
+
+#pulseaudio {
+  color: #cad3f5;
+}
+
+#custom-github {
+  color: @blue;
+}
+
+#custom-updates {
+  color: @red;
+}
+
+#pulseaudio.muted {
+  background-color: #90b1b1;
+  color: #2a5c45;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+  background-color: #eb4d4b;
 }
 
-#tray {
-    background-color: #2980b9;
+#clock {
+  font-size: 20px;
+  font-weight: 900;
 }
 
-#tray > .passive {
-    -gtk-icon-effect: dim;
+/* Custom styling for the logout icon on end */
+#custom-wlogout {
+  font-size: 1.00em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  color: @blue;
 }
 
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+#custom-separator-right,
+#custom-separator-left {
+  font-size: 30px;
+  padding-left: 1em;
+  padding-right: 1em;
+  color: @text;
 }
 
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
+@keyframes blink {
+  to {
+    background-color: #ffffff;
     color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-	background-color: transparent;
+  }
 }
