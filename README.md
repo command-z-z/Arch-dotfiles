@@ -4,6 +4,7 @@
 
 - **Window Manager** • [Hyprland](https://github.com/hyprwm/Hyprland)🎨 Tiles Manage!
 - **Status Bar** • [Waybar](https://github.com/Alexays/Waybar)🧴 Patched waybar following hyprland faq!
+- **Widget System** • [Eww](https://github.com/elkowar/eww)🔔 ElKowars wacky widgets!
 - **Terminal** • [Kitty](https://github.com/kovidgoyal/kitty) 💻 A powerful term with gpu support!
 - **Shell** • [Zsh](https://www.zsh.org/) with Theme [Starship](https://github.com/starship/starship)🐚 Cross Shell Platform!
 - **Application Launcher** • [Rofi](https://github.com/davatorium/rofi)🚀 Realmente rápido y customizable!
@@ -32,6 +33,8 @@
 ![](./img/img3.png)
 
 ![](./img/img4.png)
+
+![](./img/img5.png)
 
 </details>
 
@@ -100,6 +103,8 @@ git clone https://github.com/command-z-z/Arch-dotfiles
 ```
 
 4.Just copy the piece of code you really want.
+
+>⚠️Note :Please understand that this is my personal configuration for my setup. If something doesn't work, feel free to open up an issue or message me, and I will try to help. However, before doing that, make sure you read the error output, use some common sense, and try to solve the problem yourself if it is something simple.
 
 ### ©️ Credits
 
