@@ -141,4 +141,15 @@ return require("lazy").setup(
     -- github
     --[[ "zbirenbaum/copilot.lua",
     "zbirenbaum/copilot-cmp", ]]
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {},
+        -- stylua: ignore
+        keys = {
+            { "<leader>s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            { "<leader><leader>s", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+        },
+    },
 })
