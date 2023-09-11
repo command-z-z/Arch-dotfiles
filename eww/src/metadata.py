@@ -73,6 +73,7 @@ def on_metadata(*args):
         # "convert -modulate 95,65 /home/engene/.config/eww/spotify_cache/album_art.png /home/eugene/.config/eww/spotify_cache/album_art_modified.png"
         "cp -f /home/eugene/.config/eww/spotify_cache/album_art.png /home/eugene/.config/eww/spotify_cache/album_art_modified.png"
     )
+    print(args[1])
     metadata_new = {
         "url": args[1]["mpris:artUrl"],
         # "shadow": palette["shadow"],
@@ -82,6 +83,7 @@ def on_metadata(*args):
         "dark": "#232634",
         "title": args[1]["xesam:title"],
         "artist": args[1]["xesam:artist"][0],
+        "album": args[1]["xesam:album"],
         "current_player": args[0].props.player_name,
     }
     print(json.dumps(metadata_new), flush=True)
@@ -115,6 +117,7 @@ def player_null_check(player_manager) -> bool:
             "bright": "#ebdbb2",
             "title": "Unknown",
             "artist": "Uknown",
+            "album": "Uknown",
             "current_player": "none",
         }
         print(json.dumps(metadata), flush=True)

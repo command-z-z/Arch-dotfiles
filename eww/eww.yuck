@@ -1,129 +1,142 @@
 (defwindow dashboard
-  :class "dashboard"
-  :stacking "fg"
-  :wm-ignore true
   :monitor 0
-  :geometry (geometry
-      :width "20%"
-      :y "0%"
-      :x "40%")
-  (player)
-)
+  :stacking "fg"
+  :windowtype "normal"
+  :wm-ignore true
+  :geometry (geometry :width "20%" :height "17%" :x "40%" )
+  (spotify_card))
 
 (deflisten play_status `playerctl status -F`)
 (deflisten shuffle_status `playerctl shuffle -F`)
 (deflisten loop_status `playerctl loop -F`)
-(defpoll progress_song :interval "1s" :initial 0 `./src/song_progress.sh`)
+(defpoll progress_song :interval "1s" :initial 0`./src/song_progress.sh progress`)
+(defpoll length :interval "1s" :initial 0`./src/song_progress.sh length`)
+(defpoll position :interval "1s" :initial 0`./src/song_progress.sh position`)
 (deflisten metadata :initial '{
   "url": "/spotify_cache/album_art.png",
   "tint": "#c6d0f5",
   "dark": "#232634",
   "title": "Unknown",
   "artist": "Unknown",
+  "album": "Unknown",
   "current_player": "audio-player"
   }'
 `/usr/bin/python ./src/metadata.py`)
 
-(defwidget player []
+(defwidget spotify_card []
   (eventbox
     :onscroll "[ {} = up ] && playerctl volume 0.05+; [ {} = down ] && playerctl volume 0.02- "
     (box
-      :class "container_player_card"
-      :orientation "v"
-      :space-evenly false
-      :valign "start"
+      :class "container_play_card"
+      :orientation "h"
+      :space-enenly false
+      :haligh "start"
       :tooltip "Scroll to change the volume"
-      :style "
-      background-image:url(\"./spotify_cache/album_art_modified.png\");
-      box-shadow: inset 0 0 5em 1em ${metadata.dark};
-      color: ${metadata.tint}
-      "
-      (button :onclick "/home/eugene/.config/eww/src/toggle_player.sh"
-        (image
-          :class "app_icon"
-          :valign "start"
-          :halign "start"
-          :path {"/usr/share/icons/Papirus/48x48/apps/${metadata.current_player}.svg"}
-          :tooltip "toggle player"
-        )
+      (box
+        :class "album_img"
+        :path {"./spotify_cache/album_art_modified.png"}
+        :style "
+        background-image:url(\"./spotify_cache/album_art_modified.png\");
+        box-shadow: inset 1 1 1em 1em ${metadata.dark};
+        "
       )
       (box
         :space-evenly false
-        :spacing 0
-        :class "labels-play-container"
+        :class "play_info"
+        :orientation "v"
         (box
           :class "artist_and_song_container"
           :orientation "v"
           (label
             :class "current_song"
             :hexpand true
-            :limit-width 35
+            :limit-width 15
             :text {metadata.title}
             :halign "start"
             :valign "start"
           )
-          (label
-            :class "current_artist"
-            :hexpand true
-            :limit-width 20
-            :text {metadata.artist}
-            :halign "start"
-            :valign "start"
+          (box
+            :spacing 0
+            :orientation "v"
+            (label
+              :class "current_artist"
+              :hexpand true
+              :limit-width 15
+              :text {metadata.artist}
+              :halign "start"
+              :valign "start"
+            )
+            (label
+              :class "current_album"
+              :hexpand true
+              :limit-width 20
+              :text {metadata.album}
+              :halign "start"
+              :valign "start"
+            )
           )
         )
-        (button
-          :hexpand true
-          :class "play_button"
-          :halign "end"
-          :onclick "playerctl play-pause"
-          (label :text {play_status == 'Playing' ? "󰏥" : "󰐌"} )
-        )
-      )
-      (box
-        :space-evenly false
-        :class "control_button_box"
-        (button
-          :hexpand false
-          :class "control_buttons previous"
-          :halign "start"
-          :onclick "playerctl previous"
-          (label :text "󰼨")
-        )
-        (scale
-          :hexpand true
-          :class "progress_song"
-          :value progress_song
-          :orientation "horizontal"
-          :min 1
-          :max 101
-          :onchange "./src/change_position.sh {}"
-        )
-        (button
-          :hexpand false
-          :class "control_buttons next"
-          :halign "end"
-          :onclick "playerctl next"
-          (label :text "󰼧")
-        )
-        (button
-          :hexpand false
-          :class "control_buttons shuffle"
-          :halign "end"
-          :onclick "playerctl -p spotify shuffle toggle"
-          (label :text {shuffle_status == "Off" ? "󰒞" : "󰒟"})
-        )
-        (button
-          :hexpand false
-          :class "control_buttons loop"
-          :halign "end"
-          :onclick "./src/toggle_loop.sh"
-          (label :text {loop_status == "None" ? "󰕇" :"󰑘" })
+        (box
+          :space-evenly false
+          :class "control_button_box"
+          :orientation "v"
+          (box
+            :orientation "h"
+            (label
+              :class "progress_time_position"
+              :text {position}
+              :halign "start"
+            )
+            (scale
+              :class "progress_song"
+              :value progress_song
+              :orientation "h"
+              :min 1
+              :max 101
+              :onchange "./src/change_position.sh {}"
+            )
+            (label
+              :class "progress_time_length"
+              :text {length}
+              :halign "end"
+            )
+          )
+          (box
+            :class "buttons_info"
+            :space-envely true
+            (button
+              :hexpand false
+              :class "control_buttons shuffle"
+              :onclick "playerctl -p spotify shuffle toggle"
+              (label :text {shuffle_status == "Off" ? "󰒞" : "󰒟"})
+            )
+            (button
+              :hexpand false
+              :class "control_buttons previous"
+              :onclick "playerctl previous"
+              (label :text "󰼨")
+            )
+            (button
+             :hexpand true
+             :class "play_button"
+             :onclick "playerctl play-pause"
+             (label :text {play_status == 'Playing' ? "󰏥" : "󰐌"} )
+            )
+            (button
+              :hexpand false
+              :class "control_buttons next"
+              :onclick "playerctl next"
+              (label :text "󰼧")
+            )
+            (button
+              :hexpand false
+              :class "control_buttons loop"
+              :onclick "./src/toggle_loop.sh"
+              (label :text {loop_status == "None" ? "󰕇" :"󰑘" })
+            )
+          )
         )
       )
     )
   )
 )
-
-
-
-
