@@ -18,10 +18,11 @@ element-text, element-icon , mode-switcher {
 }
 
 window {
-    height: 360px;
+    height: 720px;
     width: 1200;
     border: 3px;
-    border-color: @border-col;
+    border-radius: 11px;
+    border-color: @white;
     background-color: @bg-col;
 }
 
@@ -51,9 +52,13 @@ textbox-prompt-colon {
 
 entry {
     padding: 6px;
-    margin: 20px 0px 0px 10px;
+    margin: 20px 20px 0px 10px;
     text-color: @fg-col;
     background-color: @bg-col;
+    border: 2px;
+    border-radius: 3px;
+    border-color: @white;
+    placeholder:"Search";
 }
 
 listview {
