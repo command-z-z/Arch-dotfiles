@@ -17,12 +17,6 @@
 - **Terminal Multiplexing** • [Tmux](https://github.com/tmux/tmux)🎯 A Terminal multiplexer!
 - **Theme** • [Catppuccin](https://github.com/catppuccin/catppuccin)🌿 My favourite Theme!
 
-<p align="center"><b>Show My Favorite Desktop</b></p>
-
-<p align="center">
-<img src="./img/img1.png" style="margin-top:30px">
-</p>
-
 ### 🐜 ScreenShot
 
 ![](./img/img2.png)
