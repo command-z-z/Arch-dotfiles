@@ -19,19 +19,14 @@
 
 ### 🐜 ScreenShot
 
-![](./img/img2.png)
+![](./asserts/img1.png)
 
 <details>
 <summary><b>Load More</b> <span style="font-size:14px;">(Click to expend) </span> </summary>
 
-![](./img/img3.png)
+![](./asserts/img2.png)
 
-![](./img/img4.png)
-
-![](./img/img5.png)
-
-![](./img/img6.png)
-
+![](./asserts/img3.png)
 </details>
 
 ### 🔨 Dependencies
