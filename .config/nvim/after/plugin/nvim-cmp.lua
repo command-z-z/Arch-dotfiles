@@ -4,7 +4,6 @@ vim.o.completeopt = "menuone,noselect"
 -- luasnip setup
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
-
 local cmp = require("cmp")
 
 -- add copilot icon support

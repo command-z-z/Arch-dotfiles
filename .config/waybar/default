@@ -10,8 +10,9 @@
                 "1": "",
                 "2": "",
                 "3": "",
-                "4": "",
-                "5": "",
+                "4": "",
+                "5": "󰢹",
+                "6": "",
                 "urgent": "",
                 "default": ""
             },
@@ -37,6 +38,7 @@
         },
         "cpu": {
             "format": " {usage}%",
+            "on-click": "kitty btop",
             "tooltip": true
         },
         "memory": {
@@ -46,7 +48,14 @@
             "format": " {percentage_used}%"
         },
         "temperature": {
-            "format": " {temperatureC}°C"
+            "format": " {temperatureC}°C",
+        },
+        "custom/gpu-temperature": {
+            "exec": "nvidia-smi -q -i 0,1 -d TEMPERATURE | grep -oP 'GPU Current Temp\\s+:\\s+\\K\\d+'",
+            "format": " {}°C",
+            "return-type": "",
+            "interval": 1,
+            "on-click": "nvidia-settings",
         },
         "network": {
             "interval": 1,
@@ -80,6 +89,7 @@
         },
         "custom/separator-right": {
             "format": "",
+            "on-click": "bash ~/.config/waybar/scripts/wallpaper.sh",
             "tooltip": false
         },
         "custom/separator-left": {
@@ -112,7 +122,7 @@
         },
         "group/stats": {
             "orientation": "horizontal",
-            "modules": ["temperature", "cpu", "memory", "disk"]
+            "modules": ["custom/gpu-temperature", "cpu", "memory", "disk"]
         },
         "group/notifications": {
             "orientation": "horizontal",

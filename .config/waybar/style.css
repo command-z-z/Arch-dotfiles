@@ -103,6 +103,7 @@ box {
 #custom-github,
 #cpu,
 #temperature,
+#custom-gpu-temperature,
 #memory,
 #disk,
 #bluetooth,
@@ -120,6 +121,7 @@ box {
   color: @yellow;
 }
 
+#custom-gpu-temperature,
 #temperature {
   color: @blue;
 }

@@ -54,7 +54,6 @@ local custom_center = {
 }
 local custom_footer = function()
     local footer = {'','','','','','🎉 Someday I will just like you'}
-    -- print(footer)
     return footer
 end
 

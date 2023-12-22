@@ -3,6 +3,7 @@ if (not status) then
   return
 end
 
+require("nvim-treesitter.install").prefer_git = true
 treesitter.setup {
   highlight = {
     enable = true,
