@@ -1,5 +1,5 @@
 <h2>
- <b style="font-size:24px;line-height:24px;vertical-align:middle;"><i><img src="./img/Arch-dotfiles.png" width="36px" style="vertical-align:middle;"> Arch dotfiles</i></b>
+ <b style="font-size:24px;line-height:24px;vertical-align:middle;"><i><img src="./asserts/Arch-dotfiles.png" width="36px" style="vertical-align:middle;"> Arch dotfiles</i></b>
 </h2>
 
 - **Window Manager** • [Hyprland](https://github.com/hyprwm/Hyprland)🎨 Tiles Manage!
