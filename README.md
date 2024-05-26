@@ -79,10 +79,10 @@ paru -S qutebrowser
 
 ### 🚀 Manual Installation
 
-1.Clone this repository.
+1.Clone this repository with some related repositories.
 
 ```
-git clone https://github.com/command-z-z/Arch-dotfiles
+git clone https://github.com/command-z-z/Arch-dotfiles --recursive
 ```
 
 2.See my `Dependencies` to learn more about my config.
