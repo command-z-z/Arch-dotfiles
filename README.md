@@ -97,6 +97,10 @@ git clone https://github.com/command-z-z/Arch-dotfiles
 
 >⚠️Note :Please understand that this is my personal configuration for my setup. If something doesn't work, feel free to open up an issue or message me, and I will try to help. However, before doing that, make sure you read the error output, use some common sense, and try to solve the problem yourself if it is something simple.
 
+### 🔒 Archive
+
+> [neovim](https://github.com/neovim/neovim) configuration has been removed from this repository, please refer to the my personal neovim repository [here](https://github.com/command-z-z/EugeneVim).
+
 ### ©️ Credits
 
 Beauty community:[r/unixporn](https://www.reddit.com/r/unixporn/)
