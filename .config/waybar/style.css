@@ -94,11 +94,7 @@ box {
 }
 
 
-/* Add spacing for right side modules */
-#tray{
-  padding: 0 1em;
-}
-
+#custom-notificaton,
 #custom-updates,
 #custom-github,
 #cpu,

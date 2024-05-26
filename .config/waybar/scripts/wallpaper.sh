@@ -1,9 +1,13 @@
 #!/bin/bash
 
-PATH=~/myConfig/Arch-dotfiles/wallpaper
-# Get random image file name
-IMG_NAME=$(/usr/bin/ls $PATH | /usr/bin/shuf -n 1)
-# full path to that random image file
-IMG_PATH=$PATH/$IMG_NAME
-# Command to change wallpaper
-/usr/bin/hyprctl hyprpaper wallpaper "DP-1,$IMG_PATH"  
+directory=~/myConfig/Arch-dotfiles/wallpaper
+monitor=`hyprctl monitors | grep Monitor | awk '{print $2}'`
+
+if [ -d "$directory" ]; then
+    random_background=$(ls $directory/* | shuf -n 1)
+
+    hyprctl hyprpaper unload all
+    hyprctl hyprpaper preload $random_background
+    hyprctl hyprpaper wallpaper "$monitor, $random_background"
+
+fi

@@ -8,7 +8,7 @@
 - **Terminal** • [Kitty](https://github.com/kovidgoyal/kitty) 💻 A powerful term with gpu support!
 - **Shell** • [Zsh](https://www.zsh.org/) with Theme [Starship](https://github.com/starship/starship)🐚 Cross Shell Platform!
 - **Application Launcher** • [Rofi](https://github.com/davatorium/rofi)🚀 Realmente rápido y customizable!
-- **Notify Daemon** • [Mako](https://github.com/emersion/mako)📠 A lightweight Wayland notification daemon!
+- **Notify Daemon** • [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)📠 A simple GTK based notification daemon with modern UI!
 - **File Manager** • [Ranger](https://github.com/ranger/ranger)📁 A VIM-inspired filemanager for the console!
 - **File Manager GUI** • [Nemo](https://github.com/linuxmint/nemo)📂 File browser for Cinnamon!
 - **Code Editor** • [Neovim](https://github.com/neovim/neovim)🗞️ A uUtimate editorr!

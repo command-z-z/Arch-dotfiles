@@ -1,9 +1,9 @@
 {
-    "custom/wlogout": {
-        "format": "",
-            "interval": "once",
-            "on-click": "wlogout -c 5 -r 5 -p layer-shell"
-    },
+        "custom/wlogout": {
+            "format": "",
+                "interval": "once",
+                "on-click": "sleep 0.1 && wlogout -c 5 -r 5 -p layer-shell"
+        },
         "hyprland/workspaces": {
             "format": "{icon}",
             "format-icons": {
@@ -17,7 +17,10 @@
                 "default": ""
             },
             "on-scroll-up": "hyprctl dispatch workspace e+1",
-            "on-scroll-down": "hyprctl dispatch workspace e-1"
+            "on-scroll-down": "hyprctl dispatch workspace e-1",
+            /* "persistent-workspaces": {
+                "*": 5
+            } */
         },
         "hyprland/window": {
             "format": "{}",
@@ -26,10 +29,6 @@
                 "org.pwmt.zathura": "📰 zathura",
                 "Spotify": "🎼 spotify",
             }
-        },
-        "tray": {
-            "icon-size" :35,
-            "spacing": 10
         },
         "clock": {
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -61,17 +60,22 @@
             "interval": 1,
             "format-wifi": " ",
             "format-ethernet": "",
-            "tooltip-format": " {ifname} via {gwaddr}",
+            "tooltip-format": " {ifname} via {gwaddr}\nconnected to {essid} at {signalStrength}% strength",
             "format-linked": " {ifname} (No IP)",
             "format-disconnected": " Disconnected",
-            "format-alt": "{ifname}: {ipaddr}/{cidr}"
+            "format-alt": "{ifname}: {ipaddr}/{cidr}",
+            "on-click": "nm-connection-editor",
+            "on-click-right": "rfkill toggle wifi",
         },
         "pulseaudio": {
             "format": "{icon} {volume}%",
             "format-bluetooth": "{icon} {volume}%",
             "format-muted": "",
             "format-icons": {
-                "headphone": "",
+                "headset": "",
+                "headphone": "󱡏",
+                "phone": "",
+                "car": "",
                 "default": ["", ""]
             },
             "scroll-step": 1,
@@ -89,7 +93,7 @@
         },
         "custom/separator-right": {
             "format": "",
-            "on-click": "bash ~/.config/waybar/scripts/wallpaper.sh",
+            "on-click": "sleep 0.1 && bash ~/.config/waybar/scripts/wallpaper.sh",
             "tooltip": false
         },
         "custom/separator-left": {
@@ -117,7 +121,27 @@
             "exec": "$HOME/.config/waybar/scripts/spotify.sh",
             "max-length": 40,
             "format": " {}",
-            "on-click": "eww open --toggle dashboard",
+            "on-click": "sleep 0.1 && eww open --toggle dashboard",
+            "tooltip": false
+        },
+        "custom/notification": {
+            "escape": true,
+            "exec": "swaync-client -swb",
+            "exec-if": "which swaync-client",
+            "format": " {icon} ",
+            "format-icons": {
+                "dnd-inhibited-none": "󰂚<sup></sup>",
+                "dnd-inhibited-notification": "󰂚<span foreground='#f38ba8'><sup></sup></span>",
+                "dnd-none": "󰂛",
+                "dnd-notification": "󰂛<span foreground='#f38ba8'><sup></sup></span>",
+                "inhibited-none": "󰂚<sup>󰜺</sup>",
+                "inhibited-notification": "󰵙<span foreground='#f38ba8'><sup></sup></span>",
+                "none": "󰂚<span color='#6c7086'><sup></sup></span>",
+                "notification": "󰂚<span foreground='#f38ba8'><sup></sup></span>"
+            },
+            "on-click": "sleep 0.1 && swaync-client -t -sw",
+            "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+            "return-type": "json",
             "tooltip": false
         },
         "group/stats": {
@@ -132,6 +156,7 @@
                 "bluetooth",
                 "custom/github",
                 "custom/updates",
+                "custom/notification",
             ]
         }
 }
