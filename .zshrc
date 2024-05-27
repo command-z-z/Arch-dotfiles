@@ -11,20 +11,14 @@ git
 zsh-autosuggestions
 zsh-syntax-highlighting
 sudo
-z
 git-open
-dash
 vi-mode
-vscode
-sublime
 fzf
 )
 
 source $ZSH/oh-my-zsh.sh
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.bashrc
 
-alias mysql=/usr/local/mysql/bin/mysql
 alias ls='lsd'
 alias vim='nvim'
 alias ra='ranger'
@@ -32,18 +26,14 @@ alias raj='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; 
 alias lt="ls --tree"
 alias reload="source ~/.zshrc"
 alias cl="clear"
+alias lg="lazygit"
 
-# ranger 配置
+# ranger icon config
 export RANGER_LOAD_DEFAULT_RC=FALSE
-# 使用,补全历史记录
+# use ',' to accept autosuggestion
 bindkey ',' autosuggest-accept
 
-bindkey '^h'  backward-char         #control+h：向左移动一个单词
-bindkey '^l'  forward-char          #control+l：向右移动一个单词
-bindkey '^k'  up-line-or-history    #control+k：向上翻看历史记录
-bindkey '^j'  down-line-or-history  #control+j：向下翻看历史记录
-
-# vi-mode 使用nvim作为默认打开工具
+# use nvim as default editor
 EDITOR=nvim 
 export EDITOR
 
