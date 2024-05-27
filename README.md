@@ -34,7 +34,6 @@
 
 ``` bash
 paru -S kitty
-paru -S wezterm
 ```
 
 <details>
