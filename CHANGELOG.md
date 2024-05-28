@@ -1,6 +1,15 @@
 #  (2024-05-28)
 
 
+### Features
+
+* **swaylock:** change wallpaper image ([3360408](https://github.com/command-z-z/Arch-dotfiles/commit/3360408ed4f2a6f4b1ed41e08ccfb7a77877b5bb))
+
+
+
+#  (2024-05-28)
+
+
 
 #  (2024-05-28)
 
