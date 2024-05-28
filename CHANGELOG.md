@@ -1,6 +1,10 @@
 #  (2024-05-28)
 
 
+
+#  (2024-05-28)
+
+
 ### Features
 
 * update wallpaper for light color ([e3e4cec](https://github.com/command-z-z/Arch-dotfiles/commit/e3e4cec62f7fa91d936960a1274216088cce2269))
