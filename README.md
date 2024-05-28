@@ -3,7 +3,7 @@
 </h2>
 
 - **Window Manager** • [Hyprland](https://github.com/hyprwm/Hyprland)🎨 Tiles Manage!
-- **Status Bar** • [Waybar](https://github.com/Alexays/Waybar)🧴 Patched waybar following hyprland faq!
+- **Status Bar** • [Waybar](https://github.com/Alexays/Waybar)🧴 Highly customizable Wayland bar!
 - **Widget System** • [Eww](https://github.com/elkowar/eww)🔔 ElKowars wacky widgets!
 - **Terminal** • [Kitty](https://github.com/kovidgoyal/kitty) 💻 A powerful term with gpu support!
 - **Shell** • [Zsh](https://www.zsh.org/) with Theme [Starship](https://github.com/starship/starship)🐚 Cross Shell Platform!
@@ -86,11 +86,7 @@ git clone https://github.com/command-z-z/Arch-dotfiles --recursive
 
 2.See my `Dependencies` to learn more about my config.
 
-3.Install the required software(see [Dependencies](#-dependencies)) or run `install.sh` script.
-
-```
-./install.sh
-```
+3.Install the required software(see [Dependencies](#-dependencies)).
 
 4.Just copy the piece of code you really want.
 
