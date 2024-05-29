@@ -1,3 +1,12 @@
+#  (2024-05-29)
+
+
+### Features
+
+* Adjust opacity and remove box-shadow ([cc9b615](https://github.com/command-z-z/Arch-dotfiles/commit/cc9b6159f9d08f344823a732c1975f6d1d3643cf))
+
+
+
 #  (2024-05-28)
 
 
