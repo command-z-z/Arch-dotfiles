@@ -1,3 +1,12 @@
+#  (2024-06-23)
+
+
+### Features
+
+* Update hyprland and waybar configurations ([c4376cf](https://github.com/command-z-z/Arch-dotfiles/commit/c4376cf504b075816e2f1c444c70ac31b5641606))
+
+
+
 #  (2024-05-29)
 
 
