@@ -60,6 +60,7 @@ window#waybar {
   color: @text;
   transition-property: background-color;
   transition-duration: 0.5s;
+  opacity: 0.9;
 }
 
 window#waybar.hidden {
