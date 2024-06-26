@@ -1,3 +1,12 @@
+#  (2024-06-26)
+
+
+### Features
+
+* Update display and font settings ([0b51e24](https://github.com/command-z-z/Arch-dotfiles/commit/0b51e24aa66ea43c48733a91ff72d5a1faf129ab))
+
+
+
 #  (2024-06-23)
 
 
