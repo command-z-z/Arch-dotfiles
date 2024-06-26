@@ -2,7 +2,7 @@
     "include": ["~/.config/waybar/default"],
     "layer": "top",
     "position": "top",
-    "output": "DP-1",
+    "output": ["DP-1", "HDMI-A-1"],
     "margin-top": 10,
     "margin-left": 20,
     "margin-right": 20,
