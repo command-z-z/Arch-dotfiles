@@ -108,7 +108,7 @@
             "on-click": "xdg-open https://github.com/notifications"
         },
         "custom/updates": {
-            "format": "{icon} {}",
+            "format": "{icon} {0}",
             "return-type": "json",
             "format-icons": {
                 "has-updates": "󱍷",
