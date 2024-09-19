@@ -1,3 +1,12 @@
+#  (2024-09-19)
+
+
+### Bug Fixes
+
+* **waybar:** fix bug "cannot switch from manual to automatic argument indexing" ([cdaad31](https://github.com/command-z-z/Arch-dotfiles/commit/cdaad316ce5a93d216638b6cf776170a6d8e17fc))
+
+
+
 #  (2024-06-26)
 
 
