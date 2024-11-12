@@ -1,3 +1,12 @@
+#  (2024-11-12)
+
+
+### Features
+
+* update configurations for btop, hyprland, and kitty ([141b2c4](https://github.com/command-z-z/Arch-dotfiles/commit/141b2c4502f3a261cadeb7870a1a967624f43dc7))
+
+
+
 #  (2024-09-19)
 
 
