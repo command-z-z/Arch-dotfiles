@@ -1,3 +1,9 @@
+#  (2026-04-25)
+
+
+### Features
+
+* **hypr:** update display configuration ([8d5764e](https://github.com/command-z-z/Arch-dotfiles/commit/8d5764eff4ae1a412b818ae29ceb2b6554f8e674))
 #  (2024-11-12)
 
 
