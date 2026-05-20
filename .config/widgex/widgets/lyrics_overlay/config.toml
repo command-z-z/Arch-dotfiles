@@ -1,0 +1,32 @@
+css = "style.css"
+
+[[windows]]
+id = "lyrics_overlay"
+title = "Lyrics Overlay"
+layer = "top"
+monitor = "0"
+anchor = ["top", "right"]
+click_through = true
+
+[windows.margin]
+top = 24
+right = 24
+
+[windows.size]
+width = 600
+height = 120
+
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["lyrics_overlay_container"]
+
+[[windows.widgets.children]]
+type = "label"
+class = ["lyrics_overlay_current"]
+text = "{{ current_lyric.current }}"
+
+[[windows.widgets.children]]
+type = "label"
+class = ["lyrics_overlay_next"]
+text = "{{ current_lyric.next }}"

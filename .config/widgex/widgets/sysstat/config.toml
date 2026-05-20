@@ -1,0 +1,187 @@
+css = "style.css"
+
+[[sources]]
+id = "sysstat"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 2000
+command = "python3 ./src/sysstat.py"
+
+[[windows]]
+id = "sysstat"
+title = "System Stats"
+layer = "background"
+anchor = ["top", "left"]
+click_through = true
+
+[windows.margin]
+top = 980
+left = 24
+
+[windows.size]
+width = 420
+height = 320
+
+# ── Root card ─────────────────────────────────────────────────────────────────
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["stat-card"]
+
+# ── Top row: CPU (left) | GPU (right) ─────────────────────────────────────────
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["stat-top-row"]
+
+# ── CPU column ────────────────────────────────────────────────────────────────
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["stat-metric-col"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-label"]
+text = "CPU"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["stat-ring-wrap"]
+
+[[windows.widgets.children.children.children.children]]
+type = "box"
+class = ["stat-ring-arc"]
+style = "--stat-pct: {{ sysstat.cpu_pct }}%; --stat-color: var(--ctp-blue)"
+
+[[windows.widgets.children.children.children.children]]
+type = "box"
+class = ["stat-ring-hole"]
+
+[[windows.widgets.children.children.children.children.children]]
+type = "label"
+class = ["stat-ring-pct"]
+text = "{{ sysstat.cpu_pct }}%"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-ring-detail"]
+text = "{{ sysstat.cpu_detail }}"
+
+# ── Vertical divider ──────────────────────────────────────────────────────────
+[[windows.widgets.children.children]]
+type = "box"
+class = ["stat-v-div"]
+
+# ── GPU column ────────────────────────────────────────────────────────────────
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["stat-metric-col"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-label"]
+text = "GPU"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["stat-ring-wrap"]
+
+[[windows.widgets.children.children.children.children]]
+type = "box"
+class = ["stat-ring-arc"]
+style = "--stat-pct: {{ sysstat.gpu_pct }}%; --stat-color: var(--ctp-green)"
+
+[[windows.widgets.children.children.children.children]]
+type = "box"
+class = ["stat-ring-hole"]
+
+[[windows.widgets.children.children.children.children.children]]
+type = "label"
+class = ["stat-ring-pct"]
+text = "{{ sysstat.gpu_pct }}%"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-ring-detail"]
+text = "{{ sysstat.gpu_detail }}"
+
+# ── Horizontal divider ────────────────────────────────────────────────────────
+[[windows.widgets.children]]
+type = "box"
+class = ["stat-h-div"]
+
+# ── Memory section ────────────────────────────────────────────────────────────
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["stat-section"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["stat-section-hdr"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-hdr-label"]
+text = "Memory"
+
+[[windows.widgets.children.children.children]]
+type = "spacer"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-hdr-pct"]
+text = "{{ sysstat.mem_pct }}%"
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["stat-bar"]
+style = "--stat-pct: {{ sysstat.mem_pct }}%; --stat-color: var(--ctp-mauve)"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["stat-section-detail"]
+text = "{{ sysstat.mem_detail }}"
+
+# ── Horizontal divider ────────────────────────────────────────────────────────
+[[windows.widgets.children]]
+type = "box"
+class = ["stat-h-div"]
+
+# ── Disk section ──────────────────────────────────────────────────────────────
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["stat-section"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["stat-section-hdr"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-hdr-label"]
+text = "Disk  /"
+
+[[windows.widgets.children.children.children]]
+type = "spacer"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-hdr-pct"]
+text = "{{ sysstat.disk_pct }}%"
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["stat-bar"]
+style = "--stat-pct: {{ sysstat.disk_pct }}%; --stat-color: var(--ctp-peach)"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["stat-section-detail"]
+text = "{{ sysstat.disk_detail }}"

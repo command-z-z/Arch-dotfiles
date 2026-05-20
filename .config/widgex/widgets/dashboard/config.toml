@@ -1,0 +1,231 @@
+css = "style.css"
+
+[[sources]]
+id = "play_status"
+kind = "shell"
+mode = "listen"
+format = "text"
+command = "playerctl -p spotify status -F"
+interval_ms = 1000
+
+[[sources]]
+id = "shuffle_status"
+kind = "shell"
+mode = "listen"
+format = "text"
+command = "playerctl -p spotify shuffle -F"
+interval_ms = 1000
+
+[[sources]]
+id = "loop_status"
+kind = "shell"
+mode = "listen"
+format = "text"
+command = "playerctl -p spotify loop -F"
+interval_ms = 1000
+
+[[sources]]
+id = "progress_song"
+kind = "shell"
+mode = "poll"
+format = "text"
+interval_ms = 1000
+command = "./src/song_progress.sh progress"
+
+[[sources]]
+id = "length"
+kind = "shell"
+mode = "poll"
+format = "text"
+interval_ms = 1000
+command = "./src/song_progress.sh length"
+
+[[sources]]
+id = "position"
+kind = "shell"
+mode = "poll"
+format = "text"
+interval_ms = 1000
+command = "./src/song_progress.sh position"
+
+
+[[sources]]
+id = "metadata"
+kind = "shell"
+mode = "listen"
+format = "json"
+command = "python3 ./src/metadata.py"
+interval_ms = 1000
+
+[[sources]]
+id = "play_icon"
+kind = "shell"
+mode = "poll"
+format = "text"
+interval_ms = 500
+command = "./src/play_icon.sh"
+
+[[sources]]
+id = "shuffle_icon"
+kind = "shell"
+mode = "poll"
+format = "text"
+interval_ms = 500
+command = "./src/shuffle_icon.sh"
+
+[[sources]]
+id = "loop_icon"
+kind = "shell"
+mode = "poll"
+format = "text"
+interval_ms = 500
+command = "./src/loop_icon.sh"
+
+[[windows]]
+id = "dashboard"
+title = "Spotify Dashboard"
+layer = "top"
+monitor = "0"
+anchor = ["top", "left"]
+click_through = false
+
+[windows.margin]
+left = 1536
+
+[windows.size]
+width = 768
+height = 410
+
+[[windows.widgets]]
+type = "box"
+direction = "row"
+class = ["container_play_card"]
+
+[[windows.widgets.children]]
+type = "box"
+class = ["album_img"]
+style = "background-image:url('{{ metadata.image }}'); box-shadow: inset 1px 1px 1em 1em {{ metadata.dark }};"
+
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["play_info"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["artist_and_song_container"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["current_song"]
+text = "{{ metadata.title }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "column"
+class = ["song_detail_box"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["current_artist"]
+text = "{{ metadata.artist }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["current_album"]
+text = "{{ metadata.album }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "box"
+direction = "column"
+class = ["lyrics_box"]
+
+[[windows.widgets.children.children.children.children.children]]
+type = "label"
+class = ["current_lyric"]
+text = "{{ current_lyric.current }}"
+
+[[windows.widgets.children.children.children.children.children]]
+type = "label"
+class = ["lyric_context"]
+text = "{{ current_lyric.next }}"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["control_button_box"]
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["progress_row"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["progress_time_position"]
+text = "{{ position.value }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "progress"
+class = ["progress_song"]
+value = "{{ progress_song.value }}"
+
+[windows.widgets.children.children.children.children.on_change]
+type = "command"
+command = "./src/change_position.sh {}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["progress_time_length"]
+text = "{{ length.value }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["buttons_info"]
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["control_buttons", "shuffle"]
+text = "{{ shuffle_icon.value }}"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "playerctl -p spotify shuffle toggle"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["control_buttons", "previous"]
+text = "󰼨"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "playerctl -p spotify previous"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["play_button"]
+text = "{{ play_icon.value }}"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "playerctl -p spotify play-pause"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["control_buttons", "next"]
+text = "󰼧"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "playerctl -p spotify next"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["control_buttons", "loop"]
+text = "{{ loop_icon.value }}"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "./src/toggle_loop.sh"

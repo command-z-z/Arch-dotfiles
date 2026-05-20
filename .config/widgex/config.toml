@@ -1,0 +1,33 @@
+version = 1
+
+modules = [
+  "widgets/wlogout/config.toml",
+  "widgets/top-bar/config.toml",
+  "widgets/dashboard/config.toml",
+  "widgets/lyrics_overlay/config.toml",
+  "widgets/clock/config.toml",
+  "widgets/date/config.toml",
+  "widgets/memo/config.toml",
+  "widgets/weather/config.toml",
+  "widgets/sysstat/config.toml",
+  "widgets/agent-monitor/config.toml",
+  "widgets/pet/config.toml",
+  "widgets/swaync/config.toml",
+]
+
+[permissions]
+allow_shell = true
+
+[theme]
+css = "style.css"
+css_files = ["themes/catppuccin-frappe.css"]
+
+# Shared sources (used by multiple widgets)
+
+[[sources]]
+id = "current_lyric"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 1000
+command = "./src/lyrics.py"

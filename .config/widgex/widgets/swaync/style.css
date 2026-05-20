@@ -1,0 +1,245 @@
+@import "macchiato.css";
+
+* {
+  color: var(--ctp-text);
+  font-family: "Liga SFMono Nerd Font", monospace;
+  box-sizing: border-box;
+}
+
+/* Fill window, lock dimensions — prevent content from expanding the window */
+html, body {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* Panel container */
+.swaync-panel {
+  width: 100%;      /* fill widgex-window flex container */
+  min-width: 0;     /* allow flex item to shrink; without this, min-width:auto
+                       lets content width override the 600 px window constraint */
+  height: 100%;
+  overflow: hidden;
+  background: var(--ctp-base);
+  border: 5px solid var(--ctp-surface0);
+  border-radius: 3em;
+  padding: 8px;
+  align-items: stretch;
+}
+
+/* Title row */
+.swaync-title {
+  margin: 8px;
+  align-items: center;
+}
+
+.swaync-title-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  flex: 1;
+}
+
+.swaync-clear-btn {
+  font-size: 1.5rem;
+  background: var(--ctp-mantle);
+  border: 3px solid var(--ctp-surface0);
+  border-radius: 12px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.swaync-clear-btn:hover {
+  background: var(--ctp-blue);
+}
+
+/* DND row */
+.swaync-dnd {
+  margin: 8px;
+  font-size: 2.2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.swaync-dnd-text {
+  flex: 1;
+}
+
+.swaync-dnd-btn {
+  font-size: 1.8rem;
+  background: var(--ctp-mantle);
+  border: 5px solid var(--ctp-surface0);
+  border-radius: 12px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.swaync-dnd-btn:hover {
+  background: var(--ctp-surface1);
+}
+
+/* Quick action buttons */
+.swaync-buttons {
+  margin: 4px 8px 8px;
+  gap: 8px;
+  justify-content: space-evenly;
+}
+
+.swaync-btn {
+  flex: 1;
+  font-size: 1.6rem;
+  background: var(--ctp-mantle);
+  border: 3px solid var(--ctp-surface0);
+  border-radius: 12px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.swaync-btn:hover {
+  background: var(--ctp-blue);
+}
+
+/* Notification list */
+.swaync-notifications {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.notif-slot {
+  background: var(--ctp-base);
+  border: 5px solid var(--ctp-surface0);
+  border-radius: 1em;
+  margin: 6px 12px;
+  padding: 10px 8px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.15),
+              0 1px 3px 1px rgba(0,0,0,0.5),
+              0 2px 6px 2px rgba(0,0,0,0.2);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.notif-header {
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.notif-app {
+  font-size: 13px;
+  color: var(--ctp-subtext0);
+  flex: 1;
+}
+
+.notif-time {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--ctp-subtext1);
+  margin-right: 8px;
+}
+
+.notif-close {
+  font-size: 13px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  border-radius: 1em;
+  min-width: 22px;
+  min-height: 22px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.notif-close:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.notif-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 2px 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+.notif-body {
+  font-size: 15px;
+  color: var(--ctp-subtext1);
+  margin-top: 4px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+/* Volume */
+.swaync-volume {
+  background: var(--ctp-mantle);
+  border-radius: 12px;
+  padding: 4px 12px 8px;
+  margin: 0 8px 8px;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.vol-icon {
+  font-size: 1.8rem;
+}
+
+.vol-slider {
+  flex: 1;
+  height: 8px;
+}
+
+/* MPRIS */
+.swaync-mpris {
+  background: var(--ctp-mantle);
+  border-radius: 12px;
+  margin: 0 8px 4px;
+  padding: 8px;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.mpris-art {
+  min-width: 96px;
+  min-height: 96px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--ctp-surface0);
+}
+
+.mpris-info {
+  flex: 1;
+  justify-content: center;
+  gap: 4px;
+}
+
+.mpris-title {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.mpris-artist {
+  font-size: 1.3rem;
+  color: var(--ctp-subtext1);
+}
+
+.mpris-play {
+  font-size: 1.8rem;
+  background: var(--ctp-surface0);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.mpris-play:hover {
+  background: var(--ctp-blue);
+}

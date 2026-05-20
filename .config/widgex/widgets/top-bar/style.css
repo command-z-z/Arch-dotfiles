@@ -1,0 +1,166 @@
+.top-bar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  padding: 0 20px;
+  border: 2px solid var(--ctp-surface1);
+  color: var(--ctp-text);
+  background: var(--ctp-base);
+  font-family: "Symbols Nerd Font", "FiraCode Nerd Font", "JetBrainsMono Nerd Font", "Liga SFMono Nerd Font", Inter, "WenQuanYi Zen Hei", ui-sans-serif, system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.top-bar-left,
+.top-bar-right {
+  height: 100%;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.top-bar-left {
+  flex: 1 1 0;
+  justify-content: flex-start;
+  max-width: 42vw;
+}
+
+.top-bar-right {
+  flex: 1 1 0;
+  justify-content: flex-end;
+}
+
+.top-bar-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 520px;
+  max-width: 34vw;
+  min-width: 0;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.top-bar-module,
+.top-bar-status,
+.top-bar-clock {
+  min-width: 0;
+  padding: 4px 9px;
+  border: 1px solid var(--ctp-surface1);
+  border-radius: 999px;
+  background: var(--ctp-surface0);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.top-bar-launcher {
+  color: var(--ctp-blue);
+  cursor: pointer;
+}
+
+.top-bar-inherit-color {
+  color: inherit;
+}
+
+.top-bar-window,
+.top-bar-separator {
+  color: var(--ctp-peach);
+}
+
+.top-bar-workspaces {
+  height: 100%;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  cursor: ns-resize;
+}
+
+.top-bar-workspace {
+  min-width: 34px;
+  justify-content: center;
+  color: var(--ctp-peach);
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.top-bar-workspace:hover {
+  border-color: color-mix(in srgb, var(--ctp-peach) 75%, transparent);
+  background: color-mix(in srgb, var(--ctp-peach) 14%, transparent);
+}
+
+.top-bar-window {
+  display: block;
+  max-width: 220px;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.top-bar-separator {
+  padding: 0 9px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.top-bar-spotify {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--ctp-green);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.top-bar-gpu,
+.top-bar-cpu {
+  color: var(--ctp-red);
+}
+
+.top-bar-memory,
+.top-bar-network {
+  color: var(--ctp-yellow);
+}
+
+.top-bar-disk,
+.top-bar-github {
+  color: var(--ctp-blue);
+}
+
+.top-bar-volume,
+.top-bar-clock {
+  color: var(--ctp-text);
+}
+
+.top-bar-bluetooth {
+  color: var(--ctp-sky);
+}
+
+.top-bar-updates,
+.top-bar-notifications {
+  color: var(--ctp-red);
+}
+
+.top-bar-status {
+  cursor: default;
+}
+
+.top-bar-volume,
+.top-bar-network,
+.top-bar-bluetooth,
+.top-bar-github,
+.top-bar-notifications {
+  cursor: pointer;
+}

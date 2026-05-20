@@ -1,0 +1,1 @@
+帮我把widgex提交到archlinux, 使得我可以用sudo pacman -S进行安装

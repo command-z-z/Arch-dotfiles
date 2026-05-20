@@ -1,0 +1,44 @@
+css = "style.css"
+
+[[sources]]
+id = "today"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 30000
+command = "date '+{\"weekday\":\"%a\",\"day\":\"%-d\",\"month\":\"%b\"}'"
+
+[[windows]]
+id = "date"
+title = "Date"
+layer = "background"
+anchor = ["top", "left"]
+click_through = true
+
+[windows.margin]
+top = 24
+left = 254
+
+[windows.size]
+width = 190
+height = 190
+
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["date-card"]
+
+[[windows.widgets.children]]
+type = "label"
+class = ["date-weekday"]
+text = "{{ today.weekday }}"
+
+[[windows.widgets.children]]
+type = "label"
+class = ["date-day"]
+text = "{{ today.day }}"
+
+[[windows.widgets.children]]
+type = "label"
+class = ["date-month"]
+text = "{{ today.month }}"

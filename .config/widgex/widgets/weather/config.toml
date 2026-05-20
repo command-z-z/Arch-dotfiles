@@ -1,0 +1,363 @@
+css = "style.css"
+
+[[sources]]
+id = "weather"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 600000
+timeout_ms = 15000
+command = "python3 ./src/weather.py Dongyang --label 'Dongyang, Zhejiang'"
+
+[[windows]]
+id = "weather"
+title = "Weather"
+layer = "background"
+anchor = ["top", "left"]
+click_through = true
+
+[windows.margin]
+top = 230
+left = 24
+
+[windows.size]
+width = 420
+height = 390
+
+# ── Root card ────────────────────────────────────────────────────────────────
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["weather-card"]
+
+# ── Top: city + temp (left) | icon + condition + range (right) ───────────────
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["weather-top"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-main"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-city"]
+text = "{{ weather.place }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-temp"]
+text = "{{ weather.temp }}"
+
+[[windows.widgets.children.children]]
+type = "spacer"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-meta"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-icon"]
+text = "{{ weather.icon }}"
+style = "color: {{ weather.icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-condition"]
+text = "{{ weather.condition }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-range"]
+text = "{{ weather.range }}"
+
+# ── Divider ───────────────────────────────────────────────────────────────────
+[[windows.widgets.children]]
+type = "box"
+class = ["weather-divider"]
+
+# ── Hourly strip (5 items, no boxes) ─────────────────────────────────────────
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["weather-hours"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-hour"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-time"]
+text = "{{ weather.hour1_time }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-icon"]
+text = "{{ weather.hour1_icon }}"
+style = "color: {{ weather.hour1_icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-temp"]
+text = "{{ weather.hour1_temp }}"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-hour"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-time"]
+text = "{{ weather.hour2_time }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-icon"]
+text = "{{ weather.hour2_icon }}"
+style = "color: {{ weather.hour2_icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-temp"]
+text = "{{ weather.hour2_temp }}"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-hour"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-time"]
+text = "{{ weather.hour3_time }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-icon"]
+text = "{{ weather.hour3_icon }}"
+style = "color: {{ weather.hour3_icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-temp"]
+text = "{{ weather.hour3_temp }}"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-hour"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-time"]
+text = "{{ weather.hour4_time }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-icon"]
+text = "{{ weather.hour4_icon }}"
+style = "color: {{ weather.hour4_icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-temp"]
+text = "{{ weather.hour4_temp }}"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-hour"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-time"]
+text = "{{ weather.hour5_time }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-icon"]
+text = "{{ weather.hour5_icon }}"
+style = "color: {{ weather.hour5_icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-temp"]
+text = "{{ weather.hour5_temp }}"
+
+# ── Divider ───────────────────────────────────────────────────────────────────
+[[windows.widgets.children]]
+type = "box"
+class = ["weather-divider"]
+
+# ── 5-day forecast ────────────────────────────────────────────────────────────
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["weather-days"]
+
+# Day 1
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["weather-day"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-name"]
+text = "{{ weather.day1_name }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-icon"]
+text = "{{ weather.day1_icon }}"
+style = "color: {{ weather.day1_icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-low"]
+text = "{{ weather.day1_low }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["weather-day-bar"]
+style = "background: linear-gradient(to right, var(--ctp-surface1) {{ weather.day1_bar_start }}%, var(--ctp-teal) {{ weather.day1_bar_start }}%, var(--ctp-peach) {{ weather.day1_bar_end }}%, var(--ctp-surface1) {{ weather.day1_bar_end }}%);"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-high"]
+text = "{{ weather.day1_high }}"
+
+# Day 2
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["weather-day"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-name"]
+text = "{{ weather.day2_name }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-icon"]
+text = "{{ weather.day2_icon }}"
+style = "color: {{ weather.day2_icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-low"]
+text = "{{ weather.day2_low }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["weather-day-bar"]
+style = "background: linear-gradient(to right, var(--ctp-surface1) {{ weather.day2_bar_start }}%, var(--ctp-teal) {{ weather.day2_bar_start }}%, var(--ctp-peach) {{ weather.day2_bar_end }}%, var(--ctp-surface1) {{ weather.day2_bar_end }}%);"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-high"]
+text = "{{ weather.day2_high }}"
+
+# Day 3
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["weather-day"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-name"]
+text = "{{ weather.day3_name }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-icon"]
+text = "{{ weather.day3_icon }}"
+style = "color: {{ weather.day3_icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-low"]
+text = "{{ weather.day3_low }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["weather-day-bar"]
+style = "background: linear-gradient(to right, var(--ctp-surface1) {{ weather.day3_bar_start }}%, var(--ctp-teal) {{ weather.day3_bar_start }}%, var(--ctp-peach) {{ weather.day3_bar_end }}%, var(--ctp-surface1) {{ weather.day3_bar_end }}%);"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-high"]
+text = "{{ weather.day3_high }}"
+
+# Day 4
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["weather-day"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-name"]
+text = "{{ weather.day4_name }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-icon"]
+text = "{{ weather.day4_icon }}"
+style = "color: {{ weather.day4_icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-low"]
+text = "{{ weather.day4_low }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["weather-day-bar"]
+style = "background: linear-gradient(to right, var(--ctp-surface1) {{ weather.day4_bar_start }}%, var(--ctp-teal) {{ weather.day4_bar_start }}%, var(--ctp-peach) {{ weather.day4_bar_end }}%, var(--ctp-surface1) {{ weather.day4_bar_end }}%);"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-high"]
+text = "{{ weather.day4_high }}"
+
+# Day 5
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["weather-day"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-name"]
+text = "{{ weather.day5_name }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-icon"]
+text = "{{ weather.day5_icon }}"
+style = "color: {{ weather.day5_icon_color }};"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-low"]
+text = "{{ weather.day5_low }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["weather-day-bar"]
+style = "background: linear-gradient(to right, var(--ctp-surface1) {{ weather.day5_bar_start }}%, var(--ctp-teal) {{ weather.day5_bar_start }}%, var(--ctp-peach) {{ weather.day5_bar_end }}%, var(--ctp-surface1) {{ weather.day5_bar_end }}%);"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-high"]
+text = "{{ weather.day5_high }}"

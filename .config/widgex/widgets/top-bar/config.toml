@@ -1,0 +1,280 @@
+css = "style.css"
+
+[[sources]]
+id = "top_bar"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 1000
+command = "python3 ./src/top_bar.py"
+
+[[sources]]
+id = "hypr_events"
+kind = "unix_socket"
+mode = "listen"
+format = "hyprland_event"
+interval_ms = 1000
+path = "$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+
+[[windows]]
+id = "top-bar"
+title = "Widgex Top Bar"
+layer = "top"
+anchor = ["top", "left", "right"]
+exclusive_zone = 32
+click_through = false
+
+[windows.size]
+height = 32
+
+[[windows.widgets]]
+type = "box"
+direction = "row"
+class = ["top-bar"]
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["top-bar-left"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-launcher"]
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "/home/eugene/Desktop/MyRepo/widgex/target/debug/widgex open --toggle wlogout"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ top_bar.launcher }}"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["top-bar-workspaces"]
+
+[windows.widgets.children.children.on_scroll_up]
+type = "command"
+command = "hyprctl dispatch workspace e+1"
+
+[windows.widgets.children.children.on_scroll_down]
+type = "command"
+command = "hyprctl dispatch workspace e-1"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ top_bar.workspace1_style }}; {{ hypr_events.workspace1_style }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "hyprctl dispatch workspace 1"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ top_bar.workspace1 }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ top_bar.workspace2_style }}; {{ hypr_events.workspace2_style }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "hyprctl dispatch workspace 2"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ top_bar.workspace2 }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ top_bar.workspace3_style }}; {{ hypr_events.workspace3_style }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "hyprctl dispatch workspace 3"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ top_bar.workspace3 }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ top_bar.workspace4_style }}; {{ hypr_events.workspace4_style }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "hyprctl dispatch workspace 4"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ top_bar.workspace4 }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ top_bar.workspace5_style }}; {{ hypr_events.workspace5_style }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "hyprctl dispatch workspace 5"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ top_bar.workspace5 }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ top_bar.workspace6_style }}; {{ hypr_events.workspace6_style }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "hyprctl dispatch workspace 6"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ top_bar.workspace6 }}"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-separator"]
+text = ""
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-window"]
+text = "{{ top_bar.window }}"
+
+[[windows.widgets.children]]
+type = "box"
+class = ["top-bar-center"]
+
+[windows.widgets.children.on_click]
+type = "command"
+command = "/home/eugene/Desktop/MyRepo/widgex/target/debug/widgex open --toggle dashboard"
+
+[windows.widgets.children.on_right_click]
+type = "command"
+command = "/home/eugene/Desktop/MyRepo/widgex/target/debug/widgex open --toggle lyrics_overlay"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-spotify"]
+text = "{{ top_bar.spotify }}"
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["top-bar-right"]
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-status", "top-bar-gpu"]
+text = "{{ top_bar.gpu }}"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-status", "top-bar-cpu"]
+text = "{{ top_bar.cpu }}"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-status", "top-bar-memory"]
+text = "{{ top_bar.memory }}"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-status", "top-bar-disk"]
+text = "{{ top_bar.disk }}"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-separator"]
+text = ""
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["top-bar-status", "top-bar-volume"]
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "pavucontrol"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["top-bar-volume"]
+text = "{{ top_bar.volume }}"
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["top-bar-status", "top-bar-network"]
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "nm-connection-editor"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["top-bar-network"]
+text = "{{ top_bar.network }}"
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["top-bar-status", "top-bar-bluetooth"]
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "blueman-manager"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["top-bar-bluetooth"]
+text = "{{ top_bar.bluetooth }}"
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["top-bar-status", "top-bar-github"]
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "xdg-open https://github.com/notifications"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["top-bar-github"]
+text = "{{ top_bar.github }}"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-status", "top-bar-updates"]
+text = "{{ top_bar.updates }}"
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["top-bar-status", "top-bar-notifications"]
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "/home/eugene/Desktop/MyRepo/widgex/target/release/widgex open --toggle swaync-panel"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["top-bar-notifications"]
+text = "{{ top_bar.notifications }}"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-clock"]
+text = "{{ top_bar.clock }}"

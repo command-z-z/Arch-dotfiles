@@ -1,0 +1,296 @@
+css = "style.css"
+
+[[sources]]
+id = "memo"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 1500
+command = "python3 ./src/memo.py read_all"
+
+[[windows]]
+id = "memo"
+title = "Memo"
+layer = "background"
+anchor = ["top", "left"]
+click_through = false
+
+[windows.margin]
+top = 640
+left = 24
+
+[windows.size]
+width = 420
+height = 320
+
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["memo-card"]
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["memo-header"]
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["memo-title"]
+text = "Memo"
+
+[[windows.widgets.children.children]]
+type = "spacer"
+
+[[windows.widgets.children.children]]
+type = "button"
+class = ["memo-add"]
+text = "+"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py new"
+
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["memo-list"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["memo-slot"]
+style = "display: {{ memo.note1_display }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py edit 1"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["memo-text"]
+text = "{{ memo.note1_text }}"
+
+[[windows.widgets.children.children.children]]
+type = "button"
+class = ["memo-close"]
+text = "×"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py delete 1"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["memo-slot"]
+style = "display: {{ memo.note2_display }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py edit 2"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["memo-text"]
+text = "{{ memo.note2_text }}"
+
+[[windows.widgets.children.children.children]]
+type = "button"
+class = ["memo-close"]
+text = "×"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py delete 2"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["memo-slot"]
+style = "display: {{ memo.note3_display }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py edit 3"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["memo-text"]
+text = "{{ memo.note3_text }}"
+
+[[windows.widgets.children.children.children]]
+type = "button"
+class = ["memo-close"]
+text = "×"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py delete 3"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["memo-slot"]
+style = "display: {{ memo.note4_display }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py edit 4"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["memo-text"]
+text = "{{ memo.note4_text }}"
+
+[[windows.widgets.children.children.children]]
+type = "button"
+class = ["memo-close"]
+text = "×"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py delete 4"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["memo-slot"]
+style = "display: {{ memo.note5_display }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py edit 5"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["memo-text"]
+text = "{{ memo.note5_text }}"
+
+[[windows.widgets.children.children.children]]
+type = "button"
+class = ["memo-close"]
+text = "×"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py delete 5"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["memo-slot"]
+style = "display: {{ memo.note6_display }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py edit 6"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["memo-text"]
+text = "{{ memo.note6_text }}"
+
+[[windows.widgets.children.children.children]]
+type = "button"
+class = ["memo-close"]
+text = "×"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py delete 6"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["memo-slot"]
+style = "display: {{ memo.note7_display }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py edit 7"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["memo-text"]
+text = "{{ memo.note7_text }}"
+
+[[windows.widgets.children.children.children]]
+type = "button"
+class = ["memo-close"]
+text = "×"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py delete 7"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["memo-slot"]
+style = "display: {{ memo.note8_display }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py edit 8"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["memo-text"]
+text = "{{ memo.note8_text }}"
+
+[[windows.widgets.children.children.children]]
+type = "button"
+class = ["memo-close"]
+text = "×"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py delete 8"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["memo-slot"]
+style = "display: {{ memo.note9_display }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py edit 9"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["memo-text"]
+text = "{{ memo.note9_text }}"
+
+[[windows.widgets.children.children.children]]
+type = "button"
+class = ["memo-close"]
+text = "×"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py delete 9"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["memo-slot"]
+style = "display: {{ memo.note10_display }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py edit 10"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["memo-text"]
+text = "{{ memo.note10_text }}"
+
+[[windows.widgets.children.children.children]]
+type = "button"
+class = ["memo-close"]
+text = "×"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 ./src/memo.py delete 10"

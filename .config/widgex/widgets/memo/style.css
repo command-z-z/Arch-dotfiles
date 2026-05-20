@@ -1,0 +1,138 @@
+@keyframes widget-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Card ── */
+.memo-card {
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  margin: 8px;
+  flex-direction: column;
+  padding: 16px 14px 10px;
+  border: 1px solid var(--ctp-surface1);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--ctp-mantle) 97%, transparent);
+  animation: widget-in 0.3s ease both;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.memo-header {
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.memo-title {
+  color: var(--ctp-text);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.memo-add {
+  width: 44px;
+  height: 28px;
+  border-radius: 14px;
+  color: var(--ctp-mantle);
+  background: var(--ctp-green);
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.memo-add:hover {
+  transform: scale(1.05);
+  filter: brightness(1.06);
+}
+
+/* ── Scrollable list ── */
+.memo-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 2px;
+  gap: 6px;
+}
+
+.memo-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.memo-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.memo-list::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ctp-overlay1) 40%, transparent);
+}
+
+/* ── Note item — left accent bar style ── */
+.memo-slot {
+  display: none;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 10px 9px 13px;
+  border: none;
+  border-left: 3px solid var(--ctp-blue);
+  border-radius: 0 10px 10px 0;
+  background: var(--ctp-surface0);
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.memo-slot:hover {
+  background: var(--ctp-surface1);
+  border-left-color: var(--ctp-teal);
+}
+
+.memo-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  color: var(--ctp-text);
+  font-size: 14px;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* ── Delete button ── */
+.memo-close {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  color: var(--ctp-overlay1);
+  background: transparent;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.memo-close:hover {
+  background: var(--ctp-red);
+  color: var(--ctp-mantle);
+}

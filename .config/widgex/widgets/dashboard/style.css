@@ -1,0 +1,232 @@
+.container_play_card {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 5px solid var(--ctp-text);
+  border-radius: 20px;
+  background-color: var(--ctp-crust);
+}
+
+.album_img {
+  flex: 0 0 330px;
+  height: 350px;
+  margin: 25px 28px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.play_info {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+
+.artist_and_song_container {
+  min-width: 0;
+}
+
+.song_detail_box {
+  min-width: 0;
+  gap: 0;
+}
+
+.current_song {
+  display: block;
+  max-width: 8ch;
+  margin-top: 25px;
+  overflow: hidden;
+  color: var(--ctp-text);
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.current_artist,
+.current_album {
+  display: block;
+  max-width: 15ch;
+  overflow: hidden;
+  color: var(--ctp-text);
+  font-family: light, Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 30px;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.current_artist {
+  margin-top: 15px;
+}
+
+.lyrics_box {
+  margin-top: 8px;
+  gap: 0;
+}
+
+.current_lyric {
+  display: block;
+  max-width: 17ch;
+  overflow: hidden;
+  color: var(--ctp-green);
+  font-family: light, Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 22px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lyric_context {
+  display: block;
+  max-width: 20ch;
+  overflow: hidden;
+  color: var(--ctp-overlay2);
+  font-family: light, Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.control_button_box {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.progress_row {
+  width: 100%;
+  align-items: center;
+  gap: 0;
+}
+
+.progress_time_position,
+.progress_time_length {
+  flex: 0 0 54px;
+  margin-top: 12px;
+  color: var(--ctp-text);
+  font-size: 17px;
+  font-style: italic;
+}
+
+.progress_time_position {
+  margin-left: 0;
+  text-align: left;
+}
+
+.progress_time_length {
+  margin-right: 0;
+  text-align: right;
+}
+
+.progress_song {
+  --progress-track-height: 8px;
+  --progress-thumb-size: 18px;
+  flex: 1 1 auto;
+  height: var(--progress-thumb-size);
+  margin-top: 12px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: linear-gradient(
+    to right,
+    var(--ctp-green) 0%,
+    var(--ctp-green) calc(var(--widgex-progress-value, 0) * 1%),
+    var(--ctp-overlay2) calc(var(--widgex-progress-value, 0) * 1%),
+    var(--ctp-overlay2) 100%
+  );
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.progress_song::-webkit-slider-runnable-track {
+  height: var(--progress-track-height);
+  border-radius: 999px;
+  background: transparent;
+}
+
+.progress_song::-webkit-slider-thumb {
+  width: var(--progress-thumb-size);
+  height: var(--progress-thumb-size);
+  margin-top: calc((var(--progress-track-height) - var(--progress-thumb-size)) / 2);
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 50%;
+  background: #f5f7fb;
+  box-shadow: none;
+}
+
+.progress_song::-moz-range-track {
+  height: var(--progress-track-height);
+  border-radius: 999px;
+  background: var(--ctp-overlay2);
+}
+
+.progress_song::-moz-range-progress {
+  height: var(--progress-track-height);
+  border-radius: 999px;
+  background: var(--ctp-green);
+}
+
+.progress_song::-moz-range-thumb {
+  width: var(--progress-thumb-size);
+  height: var(--progress-thumb-size);
+  border: none;
+  border-radius: 50%;
+  background: #f5f7fb;
+}
+
+.buttons_info {
+  width: 100%;
+  margin-top: 16px;
+  margin-right: 0;
+  margin-left: 0;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 30px;
+  background-color: var(--ctp-green);
+}
+
+.control_buttons,
+.play_button {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  color: var(--ctp-crust);
+  background: transparent;
+  cursor: pointer;
+  font-family: "Symbols Nerd Font", "JetBrainsMono Nerd Font", "FiraCode Nerd Font", "Noto Sans Symbols 2", sans-serif;
+  line-height: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.buttons_info .widgex-button {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.control_buttons {
+  font-size: 50px;
+}
+
+.control_buttons:hover {
+  font-size: 45px;
+}
+
+.play_button {
+  font-size: 60px;
+}
+
+.shuffle,
+.previous,
+.loop {
+  margin-right: 1rem;
+}
+
+.next {
+  margin-left: 1rem;
+}

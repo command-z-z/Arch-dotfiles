@@ -1,0 +1,156 @@
+css = "style.css"
+
+[[windows]]
+id = "wlogout"
+title = "Widgex Logout"
+layer = "top"
+monitor = "0"
+anchor = ["top", "left"]
+exclusive_zone = -1
+click_through = false
+
+[windows.margin]
+top = 760
+left = 1360
+
+[windows.size]
+width = 1120
+height = 640
+
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["wlogout-overlay"]
+
+[windows.widgets.on_click]
+type = "command"
+command = "widgex open --toggle wlogout"
+
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["wlogout-grid"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["wlogout-row"]
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "column"
+class = ["wlogout-action", "wlogout-lock"]
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "hyprlock"
+
+[[windows.widgets.children.children.children.children]]
+type = "image"
+class = ["wlogout-icon"]
+src = "widgets/wlogout/icons/lock.png"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["wlogout-label"]
+text = "Lock"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "column"
+class = ["wlogout-action", "wlogout-logout"]
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "loginctl terminate-user $USER"
+
+[[windows.widgets.children.children.children.children]]
+type = "image"
+class = ["wlogout-icon"]
+src = "widgets/wlogout/icons/logout.png"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["wlogout-label"]
+text = "Logout"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "column"
+class = ["wlogout-action", "wlogout-suspend"]
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "systemctl suspend"
+
+[[windows.widgets.children.children.children.children]]
+type = "image"
+class = ["wlogout-icon"]
+src = "widgets/wlogout/icons/suspend.png"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["wlogout-label"]
+text = "Suspend"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["wlogout-row"]
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "column"
+class = ["wlogout-action", "wlogout-hibernate"]
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "systemctl hibernate"
+
+[[windows.widgets.children.children.children.children]]
+type = "image"
+class = ["wlogout-icon"]
+src = "widgets/wlogout/icons/hibernate.png"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["wlogout-label"]
+text = "Hibernate"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "column"
+class = ["wlogout-action", "wlogout-shutdown"]
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "systemctl poweroff"
+
+[[windows.widgets.children.children.children.children]]
+type = "image"
+class = ["wlogout-icon"]
+src = "widgets/wlogout/icons/shutdown.png"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["wlogout-label"]
+text = "Shutdown"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "column"
+class = ["wlogout-action", "wlogout-reboot"]
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "systemctl reboot"
+
+[[windows.widgets.children.children.children.children]]
+type = "image"
+class = ["wlogout-icon"]
+src = "widgets/wlogout/icons/reboot.png"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["wlogout-label"]
+text = "Reboot"

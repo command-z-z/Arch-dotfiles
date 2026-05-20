@@ -1,0 +1,986 @@
+css = "style.css"
+
+[[sources]]
+id = "swaync"
+kind = "shell"
+mode = "listen"
+format = "json"
+interval_ms = 500
+command = "python3 ./src/notif_daemon.py"
+
+[[windows]]
+id = "swaync-panel"
+title = "Widgex Notifications"
+layer = "top"
+anchor = ["top", "right"]
+exclusive_zone = 0
+
+[windows.margin]
+top = 0
+right = 25
+bottom = 10
+
+[windows.size]
+width = 600
+height = 800
+
+# ── root ──
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["swaync-panel"]
+
+# ── title ──
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["swaync-title"]
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["swaync-title-text"]
+text = " Notifications"
+
+[[windows.widgets.children.children]]
+type = "button"
+class = ["swaync-clear-btn"]
+text = " "
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh clear"
+
+# ── dnd ──
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["swaync-dnd"]
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["swaync-dnd-text"]
+text = "Do Not Disturb"
+
+[[windows.widgets.children.children]]
+type = "button"
+class = ["swaync-dnd-btn"]
+text = "{{ swaync.dnd_label }}"
+style = "{{ swaync.dnd_style }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh toggle-dnd"
+
+# ── quick buttons ──
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["swaync-buttons"]
+
+[[windows.widgets.children.children]]
+type = "button"
+class = ["swaync-btn"]
+text = ""
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "pavucontrol"
+
+[[windows.widgets.children.children]]
+type = "button"
+class = ["swaync-btn"]
+text = ""
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "nm-connection-editor"
+
+[[windows.widgets.children.children]]
+type = "button"
+class = ["swaync-btn"]
+text = ""
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "blueman-manager"
+
+# ── notifications ──
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["swaync-notifications"]
+
+# slot 1
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_1_display }}; {{ swaync.notif_1_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_1_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_1_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-1"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_1_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_1_body }}"
+
+# slot 2
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_2_display }}; {{ swaync.notif_2_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_2_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_2_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-2"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_2_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_2_body }}"
+
+# slot 3
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_3_display }}; {{ swaync.notif_3_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_3_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_3_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-3"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_3_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_3_body }}"
+
+# slot 4
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_4_display }}; {{ swaync.notif_4_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_4_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_4_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-4"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_4_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_4_body }}"
+
+# slot 5
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_5_display }}; {{ swaync.notif_5_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_5_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_5_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-5"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_5_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_5_body }}"
+
+# slot 6
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_6_display }}; {{ swaync.notif_6_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_6_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_6_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-6"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_6_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_6_body }}"
+
+# slot 7
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_7_display }}; {{ swaync.notif_7_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_7_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_7_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-7"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_7_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_7_body }}"
+
+# slot 8
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_8_display }}; {{ swaync.notif_8_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_8_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_8_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-8"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_8_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_8_body }}"
+
+# slot 9
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_9_display }}; {{ swaync.notif_9_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_9_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_9_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-9"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_9_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_9_body }}"
+
+# slot 10
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_10_display }}; {{ swaync.notif_10_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_10_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_10_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-10"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_10_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_10_body }}"
+
+# slot 11
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_11_display }}; {{ swaync.notif_11_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_11_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_11_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-11"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_11_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_11_body }}"
+
+# slot 12
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_12_display }}; {{ swaync.notif_12_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_12_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_12_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-12"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_12_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_12_body }}"
+
+# slot 13
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_13_display }}; {{ swaync.notif_13_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_13_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_13_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-13"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_13_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_13_body }}"
+
+# slot 14
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_14_display }}; {{ swaync.notif_14_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_14_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_14_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-14"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_14_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_14_body }}"
+
+# slot 15
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_15_display }}; {{ swaync.notif_15_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_15_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_15_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-15"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_15_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_15_body }}"
+
+# slot 16
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_16_display }}; {{ swaync.notif_16_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_16_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_16_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-16"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_16_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_16_body }}"
+
+# slot 17
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_17_display }}; {{ swaync.notif_17_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_17_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_17_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-17"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_17_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_17_body }}"
+
+# slot 18
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_18_display }}; {{ swaync.notif_18_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_18_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_18_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-18"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_18_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_18_body }}"
+
+# slot 19
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_19_display }}; {{ swaync.notif_19_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_19_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_19_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-19"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_19_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_19_body }}"
+
+# slot 20
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["notif-slot"]
+style = "display: {{ swaync.notif_20_display }}; {{ swaync.notif_20_urgent_style }}"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["notif-header"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-app"]
+text = "{{ swaync.notif_20_app }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["notif-time"]
+text = "{{ swaync.notif_20_time }}"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["notif-close"]
+text = "×"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "/home/eugene/.config/widgex/widgets/swaync/src/notif_ctrl.sh close-20"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-title"]
+text = "{{ swaync.notif_20_title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["notif-body"]
+text = "{{ swaync.notif_20_body }}"
+
+# ── volume ──
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["swaync-volume"]
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["vol-icon"]
+text = " "
+
+[[windows.widgets.children.children]]
+type = "progress"
+class = ["vol-slider"]
+value = "{{ swaync.volume_pct }}"
+
+[windows.widgets.children.children.on_change]
+type = "command"
+command = "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+
+# ── mpris ──
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["swaync-mpris"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["mpris-art"]
+style = "background-image: url('{{ metadata.image }}');"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["mpris-info"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["mpris-title"]
+text = "{{ metadata.title }}"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["mpris-artist"]
+text = "{{ metadata.artist }}"
+
+[[windows.widgets.children.children]]
+type = "button"
+class = ["mpris-play"]
+text = "{{ play_icon.value }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "playerctl -p spotify play-pause"

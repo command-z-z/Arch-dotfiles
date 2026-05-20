@@ -1,0 +1,88 @@
+@keyframes widget-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.clock-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: widget-in 0.3s ease both;
+}
+
+.clock-dial {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--ctp-surface1);
+  border-radius: 50%;
+  background: var(--ctp-mantle);
+}
+
+.clock-tick {
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  width: 2px;
+  height: 10px;
+  margin-left: -1px;
+  border-radius: 1px;
+  background: var(--ctp-overlay2);
+  transform-origin: 50% 890%;  /* (95-6)/10×100% = 890% → pivot at y=95px = center */
+}
+
+.clock-tick-0 { transform: rotate(0deg); }
+.clock-tick-1 { transform: rotate(30deg); }
+.clock-tick-2 { transform: rotate(60deg); }
+.clock-tick-3 { transform: rotate(90deg); }
+.clock-tick-4 { transform: rotate(120deg); }
+.clock-tick-5 { transform: rotate(150deg); }
+.clock-tick-6 { transform: rotate(180deg); }
+.clock-tick-7 { transform: rotate(210deg); }
+.clock-tick-8 { transform: rotate(240deg); }
+.clock-tick-9 { transform: rotate(270deg); }
+.clock-tick-10 { transform: rotate(300deg); }
+.clock-tick-11 { transform: rotate(330deg); }
+
+.clock-hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform-origin: 50% 100%;
+}
+
+.clock-hand-hour {
+  width: 6px;
+  height: 46px;
+  margin-left: -3px;
+  border-radius: 3px;
+  background: var(--ctp-text);
+}
+
+.clock-hand-minute {
+  width: 4px;
+  height: 66px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--ctp-text);
+}
+
+.clock-hand-second {
+  width: 2px;
+  height: 74px;
+  margin-left: -1px;
+  border-radius: 1px;
+  background: var(--ctp-red);
+}
+
+.clock-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: var(--ctp-red);
+}

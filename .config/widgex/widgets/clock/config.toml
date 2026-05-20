@@ -1,0 +1,99 @@
+css = "style.css"
+
+[[sources]]
+id = "clock_hands"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 1000
+command = "sh ./src/clock_hands.sh"
+
+[[windows]]
+id = "clock"
+title = "Clock"
+layer = "background"
+anchor = ["top", "left"]
+click_through = true
+
+[windows.margin]
+top = 24
+left = 24
+
+[windows.size]
+width = 190
+height = 190
+
+[[windows.widgets]]
+type = "box"
+class = ["clock-face"]
+
+[[windows.widgets.children]]
+type = "box"
+class = ["clock-dial"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-0"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-1"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-2"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-3"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-4"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-5"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-6"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-7"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-8"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-9"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-10"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["clock-tick", "clock-tick-11"]
+
+[[windows.widgets.children]]
+type = "box"
+class = ["clock-hand", "clock-hand-hour"]
+style = "transform: rotate({{ clock_hands.hour }}deg)"
+
+[[windows.widgets.children]]
+type = "box"
+class = ["clock-hand", "clock-hand-minute"]
+style = "transform: rotate({{ clock_hands.minute }}deg)"
+
+[[windows.widgets.children]]
+type = "box"
+class = ["clock-hand", "clock-hand-second"]
+style = "transform: rotate({{ clock_hands.second }}deg)"
+
+[[windows.widgets.children]]
+type = "box"
+class = ["clock-center"]

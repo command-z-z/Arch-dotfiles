@@ -1,0 +1,38 @@
+/* macOS Dark Mode — https://developer.apple.com/design/human-interface-guidelines/color */
+:root {
+  /* System accent colors (dark variant) */
+  --ctp-rosewater: #ff6961;
+  --ctp-flamingo:  #ff8080;
+  --ctp-pink:      #ff375f;
+  --ctp-mauve:     #bf5af2;
+  --ctp-red:       #ff453a;
+  --ctp-maroon:    #ff6961;
+  --ctp-peach:     #ff9f0a;
+  --ctp-yellow:    #ffd60a;
+  --ctp-green:     #30d158;
+  --ctp-teal:      #5ac8fa;
+  --ctp-sky:       #64d2ff;
+  --ctp-sapphire:  #007aff;
+  --ctp-blue:      #0a84ff;
+  --ctp-lavender:  #5e5ce6;
+
+  /* Label scale */
+  --ctp-text:     #f2f2f7;
+  --ctp-subtext1: #d1d1d6;
+  --ctp-subtext0: #c7c7cc;
+
+  /* Secondary / tertiary fills */
+  --ctp-overlay2: #8e8e93;
+  --ctp-overlay1: #636366;
+  --ctp-overlay0: #48484a;
+
+  /* Surface scale */
+  --ctp-surface2: #3a3a3c;
+  --ctp-surface1: #2c2c2e;
+  --ctp-surface0: #1c1c1e;
+
+  /* Background scale (vibrancy layers) */
+  --ctp-base:   #141414;
+  --ctp-mantle: #111111;
+  --ctp-crust:  #0a0a0a;
+}
