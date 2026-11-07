@@ -122,6 +122,7 @@
             "max-length": 40,
             "format": " {}",
             "on-click": "sleep 0.1 && eww open --toggle dashboard",
+            "on-click-right": "sleep 0.1 && eww open --toggle lyrics_overlay",
             "tooltip": false
         },
         "custom/notification": {

@@ -1,90 +1,97 @@
 import gi
+import hashlib
 import shutil
-import colorgram
-import requests
 import json
-import os
+from pathlib import Path
 from urllib.parse import urlparse, unquote
+from urllib.request import urlopen
 
 gi.require_version("Playerctl", "2.0")
 from gi.repository import Playerctl, GLib
 
 
+EWW_DIR = Path(__file__).resolve().parent.parent
+CACHE_DIR = EWW_DIR / "spotify_cache"
+DEFAULT_IMAGE = "./spotify_cache/default.png"
+MAX_ART_CACHE = 8
+PLAYER_NAME = "spotify"
+
+
+def is_spotify_player(name) -> bool:
+    player_name = getattr(name, "name", str(name)).lower()
+    return player_name == PLAYER_NAME or player_name.startswith(f"{PLAYER_NAME}.")
+
+
+def metadata_get(metadata, key, default=""):
+    try:
+        value = metadata[key]
+    except (KeyError, TypeError):
+        return default
+    return value if value is not None else default
+
+
+def first_artist(value):
+    if isinstance(value, (list, tuple)) and value:
+        return str(value[0])
+    if value:
+        return str(value)
+    return "Unknown"
+
+
 def save_image(url):
+    if not url:
+        return DEFAULT_IMAGE
+
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    art_hash = hashlib.sha1(url.encode("utf-8")).hexdigest()[:12]
+    dst_path = CACHE_DIR / f"album_art_{art_hash}.png"
+
     if url.startswith("file://"):
         file_path = urlparse(url).path
         file_path = unquote(file_path)
-        dst_path = os.path.join("/home/eugene/.config/eww/spotify_cache", "album_art.png")
         shutil.copy(file_path, dst_path)
-        return True
-    response = requests.get(url)
-    if response.status_code == 200:
-        with open("/home/eugene/.config/eww/spotify_cache/album_art.png", "wb") as f:
-            f.write(response.content)
-        return True
     else:
-        return False
+        with urlopen(url, timeout=10) as response:
+            dst_path.write_bytes(response.read())
+
+    latest_path = CACHE_DIR / "album_art.png"
+    shutil.copy(dst_path, latest_path)
+    cleanup_old_art(dst_path)
+    return f"./spotify_cache/{dst_path.name}"
 
 
-def get_palette():
-    # Set the number of colors to extract from the image
-    num_colors = 10
-    # Set the input image filename
-    image_file = "/home/eugene/.config/eww/spotify_cache/album_art.png"
-    # Extract colors from the image using colorgram
-    colors = colorgram.extract(image_file, num_colors)
-    # Sort the colors by brightness
-    most_saturated = max(colors, key=lambda c: c.hsl.s)
-    colors = sorted(colors, key=lambda c: c.rgb.r + c.rgb.g + c.rgb.b)
-    # Convert the brightest and darkest colors to hex codes
-    darkest_color = "#{:02x}{:02x}{:02x}".format(*colors[0].rgb)
-    # Define mixing ratio (0 = pure most_saturated color, 1 = pure white)
-    mix_ratio = 0.85
-    # Mix colors
-    mixed_color = (
-        round((1 - mix_ratio) * most_saturated.rgb.r + mix_ratio * 255),
-        round((1 - mix_ratio) * most_saturated.rgb.g + mix_ratio * 255),
-        round((1 - mix_ratio) * most_saturated.rgb.b + mix_ratio * 255),
+def cleanup_old_art(keep_path):
+    cached_art = sorted(
+        CACHE_DIR.glob("album_art_*.png"),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
     )
-    mix_ratio = 0.3
-    shadow = (
-        round((1 - mix_ratio) * most_saturated.rgb.r + mix_ratio * 255),
-        round((1 - mix_ratio) * most_saturated.rgb.g + mix_ratio * 255),
-        round((1 - mix_ratio) * most_saturated.rgb.b + mix_ratio * 255),
-    )
-    shadow_hex = "#{:02x}{:02x}{:02x}".format(*shadow)
-    # Convert mixed color to hex string
-    hex_color = "#{:02x}{:02x}{:02x}".format(*mixed_color)
-    # Create a dictionary to store the color values
-    color_dict = {
-        "shadow": shadow_hex,
-        "darkest": darkest_color,
-        "tint": hex_color,
-    }
-    print(shadow_hex)
-    # Output the colors as JSON
-    return color_dict
+    for path in cached_art[MAX_ART_CACHE:]:
+        if path != keep_path:
+            path.unlink(missing_ok=True)
 
 
 def on_metadata(*args):
-    save_image(args[1]["mpris:artUrl"])
-    palette = get_palette()
-    os.system(
-        # "convert -modulate 95,65 /home/engene/.config/eww/spotify_cache/album_art.png /home/eugene/.config/eww/spotify_cache/album_art_modified.png"
-        "cp -f /home/eugene/.config/eww/spotify_cache/album_art.png /home/eugene/.config/eww/spotify_cache/album_art_modified.png"
-    )
-    print(args[1])
+    player = args[0]
+    if player.props.player_name.lower() != PLAYER_NAME:
+        return
+
+    metadata = args[1]
+    art_url = metadata_get(metadata, "mpris:artUrl")
+    try:
+        image_path = save_image(art_url)
+    except Exception:
+        image_path = DEFAULT_IMAGE
+
     metadata_new = {
-        "url": args[1]["mpris:artUrl"],
-        # "shadow": palette["shadow"],
-        # "tint": palette["tint"],
-        # "dark": palette["darkest"],
+        "url": art_url,
+        "image": image_path,
         "tint": "#c6d0f5",
         "dark": "#232634",
-        "title": args[1]["xesam:title"],
-        "artist": args[1]["xesam:artist"][0],
-        "album": args[1]["xesam:album"],
-        "current_player": args[0].props.player_name,
+        "title": metadata_get(metadata, "xesam:title", "Unknown"),
+        "artist": first_artist(metadata_get(metadata, "xesam:artist")),
+        "album": metadata_get(metadata, "xesam:album", "Unknown"),
+        "current_player": player.props.player_name,
     }
     print(json.dumps(metadata_new), flush=True)
 
@@ -99,6 +106,21 @@ def on_play_pause(player, *_):
     on_metadata(player, player.props.metadata)
 
 
+def print_default_metadata():
+    metadata = {
+        "url": DEFAULT_IMAGE,
+        "image": DEFAULT_IMAGE,
+        "tint": "#c6d0f5",
+        "dark": "#232634",
+        "bright": "#ebdbb2",
+        "title": "Unknown",
+        "artist": "Unknown",
+        "album": "Unknown",
+        "current_player": "none",
+    }
+    print(json.dumps(metadata), flush=True)
+
+
 def player_null_check(player_manager) -> bool:
     """Checks if there are any players being managed by the manager and print
     the default metadata if there are none.
@@ -110,22 +132,12 @@ def player_null_check(player_manager) -> bool:
         A bool i.e. True if there are no active players, False otherwise.
     """
     if not len(player_manager.props.player_names):
-        metadata = {
-            "url": "/spotify_cache/default.png",
-            "tint": "#c6d0f5",
-            "dark": "#232634",
-            "bright": "#ebdbb2",
-            "title": "Unknown",
-            "artist": "Uknown",
-            "album": "Uknown",
-            "current_player": "none",
-        }
-        print(json.dumps(metadata), flush=True)
+        print_default_metadata()
         return False
     return True
 
 
-def on_name_appeared_vanished(player_manager, name):
+def on_name_appeared(player_manager, name):
     """Callback function for taking action when a player gets either connected or,
     disconnected from the manager.
 
@@ -133,8 +145,17 @@ def on_name_appeared_vanished(player_manager, name):
         player_manager: A PlayerManager object.
         name: A PlayerName object.
     """
-    if player_null_check(player_manager):
+    if is_spotify_player(name):
         init_player(name)
+
+
+def on_name_vanished(player_manager, name):
+    if is_spotify_player(name) and not any(
+        is_spotify_player(player_name) for player_name in player_manager.props.player_names
+    ):
+        print_default_metadata()
+        return
+    player_null_check(player_manager)
 
 
 def init_player(name):
@@ -149,27 +170,27 @@ def init_player(name):
     Arguments:
         name: A PlayerName object.
     """
+    if not is_spotify_player(name):
+        return
+
     player = Playerctl.Player.new_from_name(name)
     player.connect("metadata", on_metadata, manager)
     player.connect("playback-status::playing", on_play_pause, manager)
     player.connect("playback-status::paused", on_play_pause, manager)
     manager.manage_player(player)
+    on_metadata(player, player.props.metadata)
 
 
 manager = Playerctl.PlayerManager()
-manager.connect("name-appeared", on_name_appeared_vanished)
-manager.connect("name-vanished", on_name_appeared_vanished)
+manager.connect("name-appeared", on_name_appeared)
+manager.connect("name-vanished", on_name_vanished)
 
 # loop through and initialize all registered and active MPRIS player on first run.
-[init_player(name) for name in manager.props.player_names]
-# if there are no player on the first run then print fallback / dummy metadata.
-# WARN: Note that a really bad error is thrown when this check is not done.
-# WARN: IIRC it is from the underlying C library so, you can't really try-except that.
-if player_null_check(manager):
-    player = Playerctl.Player()
-    on_metadata(player, player.props.metadata)
-    try:
-        loop = GLib.MainLoop()
-        loop.run()
-    except (KeyboardInterrupt, Exception) as excep:
-        loop.quit()
+[init_player(name) for name in manager.props.player_names if is_spotify_player(name)]
+if not any(is_spotify_player(name) for name in manager.props.player_names):
+    print_default_metadata()
+try:
+    loop = GLib.MainLoop()
+    loop.run()
+except (KeyboardInterrupt, Exception):
+    loop.quit()

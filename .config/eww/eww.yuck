@@ -3,17 +3,30 @@
   :stacking "fg"
   :windowtype "normal"
   :wm-ignore true
-  :geometry (geometry :width "20%" :height "17%" :x "40%" )
+  :geometry (geometry :width "20%" :height "19%" :x "40%" )
   (spotify_card))
 
-(deflisten play_status `playerctl status -F`)
-(deflisten shuffle_status `playerctl shuffle -F`)
-(deflisten loop_status `playerctl loop -F`)
+(defwindow lyrics_overlay
+  :monitor 0
+  :stacking "fg"
+  :windowtype "normal"
+  :wm-ignore false
+  :geometry (geometry
+    :anchor "top center"
+    :y "2%"
+  )
+  (lyrics_overlay_widget))
+
+(deflisten play_status `playerctl -p spotify status -F`)
+(deflisten shuffle_status `playerctl -p spotify shuffle -F`)
+(deflisten loop_status `playerctl -p spotify loop -F`)
 (defpoll progress_song :interval "1s" :initial 0`./src/song_progress.sh progress`)
 (defpoll length :interval "1s" :initial 0`./src/song_progress.sh length`)
 (defpoll position :interval "1s" :initial 0`./src/song_progress.sh position`)
+(defpoll current_lyric :interval "1s" :initial '{"current":"","next":""}' `./src/lyrics.py`)
 (deflisten metadata :initial '{
   "url": "/spotify_cache/album_art.png",
+  "image": "./spotify_cache/default.png",
   "tint": "#c6d0f5",
   "dark": "#232634",
   "title": "Unknown",
@@ -25,18 +38,13 @@
 
 (defwidget spotify_card []
   (eventbox
-    :onscroll "[ {} = up ] && playerctl volume 0.05+; [ {} = down ] && playerctl volume 0.02- "
     (box
       :class "container_play_card"
       :orientation "h"
-      :space-enenly false
-      :haligh "start"
-      :tooltip "Scroll to change the volume"
       (box
         :class "album_img"
-        :path {"./spotify_cache/album_art_modified.png"}
         :style "
-        background-image:url(\"./spotify_cache/album_art_modified.png\");
+        background-image:url(\"${metadata.image}\");
         box-shadow: inset 1 1 1em 1em ${metadata.dark};
         "
       )
@@ -47,10 +55,11 @@
         (box
           :class "artist_and_song_container"
           :orientation "v"
+          :space-evenly false
           (label
             :class "current_song"
             :hexpand true
-            :limit-width 15
+            :limit-width 8
             :text {metadata.title}
             :halign "start"
             :valign "start"
@@ -58,6 +67,7 @@
           (box
             :spacing 0
             :orientation "v"
+            :space-evenly false
             (label
               :class "current_artist"
               :hexpand true
@@ -69,10 +79,31 @@
             (label
               :class "current_album"
               :hexpand true
-              :limit-width 20
+              :limit-width 15
               :text {metadata.album}
               :halign "start"
               :valign "start"
+            )
+            (box
+              :class "lyrics_box"
+              :orientation "v"
+              :spacing 0
+              (label
+                :class "current_lyric"
+                :hexpand true
+                :limit-width 17
+                :text {current_lyric.current}
+                :halign "start"
+                :valign "start"
+              )
+              (label
+                :class "lyric_context next_lyric"
+                :hexpand true
+                :limit-width 20
+                :text {current_lyric.next}
+                :halign "start"
+                :valign "start"
+              )
             )
           )
         )
@@ -92,7 +123,7 @@
               :value progress_song
               :orientation "h"
               :min 1
-              :max 101
+              :max 100
               :onchange "./src/change_position.sh {}"
             )
             (label
@@ -103,7 +134,7 @@
           )
           (box
             :class "buttons_info"
-            :space-envely true
+            :space-evenly true
             (button
               :hexpand false
               :class "control_buttons shuffle"
@@ -113,29 +144,53 @@
             (button
               :hexpand false
               :class "control_buttons previous"
-              :onclick "playerctl previous"
+              :onclick "playerctl -p spotify previous"
               (label :text "󰼨")
             )
             (button
              :hexpand true
              :class "play_button"
-             :onclick "playerctl play-pause"
+             :onclick "playerctl -p spotify play-pause"
              (label :text {play_status == 'Playing' ? "󰏥" : "󰐌"} )
             )
             (button
               :hexpand false
               :class "control_buttons next"
-              :onclick "playerctl next"
+              :onclick "playerctl -p spotify next"
               (label :text "󰼧")
             )
             (button
               :hexpand false
               :class "control_buttons loop"
               :onclick "./src/toggle_loop.sh"
-              (label :text {loop_status == "None" ? "󰕇" :"󰑘" })
+              (label :text {loop_status == "None" ? "󰕇" : (loop_status == "Track" ? "󰑘" : "󰑖") })
             )
           )
         )
+      )
+    )
+  )
+)
+
+(defwidget lyrics_overlay_widget []
+  (eventbox
+    (box
+      :class "lyrics_overlay_container"
+      :orientation "v"
+      :space-evenly false
+      (label
+        :class "lyrics_overlay_current"
+        :hexpand true
+        :limit-width 100
+        :text {current_lyric.current}
+        :halign "center"
+      )
+      (label
+        :class "lyrics_overlay_next"
+        :hexpand true
+        :limit-width 100
+        :text {current_lyric.next}
+        :halign "center"
       )
     )
   )

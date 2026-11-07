@@ -1,10 +1,10 @@
 #!/bin/bash
 
-dividend=$(playerctl metadata --format "{{ position }}")
+dividend=$(playerctl -p spotify metadata --format "{{ position }}")
 pos=$((dividend/1000000))
 cur_position=$(date -u -d@"$pos" +'%M:%S')
 
-divisor=$(playerctl metadata --format "{{ mpris:length }}")
+divisor=$(playerctl -p spotify metadata --format "{{ mpris:length }}")
 length=$((divisor/1000000))
 total_length=$(date -u -d@"$length" +'%M:%S')
 

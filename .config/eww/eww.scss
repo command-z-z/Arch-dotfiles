@@ -1,7 +1,5 @@
 $BLACK: #181926;
 $WHITE: #cad3f5;
-$MAGENTA: #c6a0f6;
-$BLACK: #181926;
 $GREY: #939ab7;
 $GREEN: #a6da95;
 
@@ -10,14 +8,20 @@ $GREEN: #a6da95;
 }
 
 window {
+  border: none;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.container_play_card {
   border-radius: 20px;
   border: 5px solid $WHITE;
-  background-color: $BLACK
+  background-color: $BLACK;
 }
 
 .album_img {
-    margin: 25;
-    background-size:100% 100%;
+  margin: 25px;
+  background-size: 100% 100%;
 }
 
 .current_song {
@@ -30,7 +34,7 @@ window {
 
 .current_artist {
   margin-left: 1px;
-  margin-top: 10px;
+  margin-top: 15px;
   font-size: 30px;
   font-family: light;
   color: $WHITE;
@@ -41,6 +45,42 @@ window {
   font-size: 30px;
   font-family: light;
   color: $WHITE;
+}
+
+.lyrics_box {
+  margin-left: 1px;
+  margin-top: 8px;
+}
+
+.lyric_context {
+  font-size: 17px;
+  font-family: light;
+  color: $GREY;
+}
+
+.current_lyric {
+  font-size: 22px;
+  font-family: light;
+  color: $GREEN;
+}
+
+.lyrics_overlay_container {
+  padding: 10px 16px;
+  border-radius: 12px;
+  background-color: transparent;
+  border: none;
+}
+
+.lyrics_overlay_current {
+  font-size: 50px;
+  font-weight: bold;
+  color: $GREEN;
+}
+
+.lyrics_overlay_next {
+  margin-top: 4px;
+  font-size: 40px;
+  color: $GREY;
 }
 
 .progress_song trough highlight {
@@ -84,7 +124,7 @@ button {
   margin-left: 10px;
   margin-top: 20px;
   border-radius: 30px;
-  background-color: $GREEN
+  background-color: $GREEN;
 }
 
 .control_buttons {
@@ -115,9 +155,11 @@ button {
 .previous {
   margin-right: 1rem;
 }
+
 .next {
   margin-left: 1rem;
 }
+
 .loop {
   margin-right: 1rem;
 }
