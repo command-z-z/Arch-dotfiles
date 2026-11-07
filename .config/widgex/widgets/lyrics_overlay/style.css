@@ -1,37 +1,21 @@
+.native-lyrics_overlay { color: #c6d0f5; font-family: Inter, "Noto Sans", sans-serif; }
+.native-lyrics_overlay button { min-width: 0; min-height: 0; padding: 0; background-image: none; box-shadow: none; }
+
 .lyrics_overlay_container {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 20px;
+  padding: 10px 16px;
   border: none;
   border-radius: 14px;
-  background-color: var(--ctp-crust);
+  background-color: transparent;
 }
 
 .lyrics_overlay_current {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  color: var(--ctp-green);
-  font-size: 26px;
+  color: #a6d189;
+  font-size: 50px;
   font-weight: bold;
-  line-height: 1.3;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .lyrics_overlay_next {
-  display: block;
-  max-width: 100%;
-  margin-top: 6px;
-  overflow: hidden;
-  color: var(--ctp-overlay2);
-  font-size: 20px;
-  line-height: 1.3;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  margin-top: 4px;
+  color: #949cbb;
+  font-size: 40px;
 }

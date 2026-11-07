@@ -1,0 +1,1075 @@
+# Generated native migration; original module remains untouched.
+css = "style.css"
+
+[[sources]]
+id = "top_bar"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 1000
+timeout_ms = 15000
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py | python3 -B /home/eugene/.config/widgex/scripts/native_source.py json"
+
+[[sources]]
+id = "bar_controls"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 100
+timeout_ms = 1000
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --fast"
+
+[[sources]]
+id = "bar_details"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 5000
+timeout_ms = 5000
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --tooltips"
+
+[[sources]]
+id = "workspaces_live"
+kind = "shell"
+mode = "listen"
+format = "json"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspaces-stream"
+
+[[sources]]
+id = "notifications_live"
+kind = "shell"
+mode = "listen"
+format = "json"
+command = "swaync-client -s | python3 -B /home/eugene/.config/widgex/scripts/native_source.py notifications-live"
+
+[[windows]]
+id = "top-bar"
+title = "Widgex Top Bar"
+layer = "top"
+anchor = ["top", "left", "right"]
+exclusive_zone = 83
+click_through = false
+
+[windows.size]
+height = 83
+
+[[windows.widgets]]
+type = "center_box"
+direction = "row"
+class = ["top-bar", "native-top-bar"]
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["top-bar-left"]
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-launcher"]
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "/home/eugene/.local/bin/widgex open --toggle wlogout"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ top_bar.launcher }}"
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["top-bar-workspaces"]
+
+[windows.widgets.children.children.on_scroll_up]
+type = "command"
+command = "hyprctl eval 'hl.dispatch(hl.dsp.focus({workspace=\"e+1\"}))'"
+
+[windows.widgets.children.children.on_scroll_down]
+type = "command"
+command = "hyprctl eval 'hl.dispatch(hl.dsp.focus({workspace=\"e-1\"}))'"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace1_style }}"
+visible = "{{ workspaces_live.workspace1_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 1"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace1 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace2_style }}"
+visible = "{{ workspaces_live.workspace2_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 2"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace2 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace3_style }}"
+visible = "{{ workspaces_live.workspace3_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 3"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace3 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace4_style }}"
+visible = "{{ workspaces_live.workspace4_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 4"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace4 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace5_style }}"
+visible = "{{ workspaces_live.workspace5_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 5"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace5 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace6_style }}"
+visible = "{{ workspaces_live.workspace6_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 6"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace6 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace7_style }}"
+visible = "{{ workspaces_live.workspace7_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 7"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace7 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace8_style }}"
+visible = "{{ workspaces_live.workspace8_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 8"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace8 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace9_style }}"
+visible = "{{ workspaces_live.workspace9_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 9"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace9 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace10_style }}"
+visible = "{{ workspaces_live.workspace10_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 10"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace10 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace11_style }}"
+visible = "{{ workspaces_live.workspace11_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 11"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace11 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace12_style }}"
+visible = "{{ workspaces_live.workspace12_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 12"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace12 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace13_style }}"
+visible = "{{ workspaces_live.workspace13_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 13"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace13 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace14_style }}"
+visible = "{{ workspaces_live.workspace14_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 14"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace14 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace15_style }}"
+visible = "{{ workspaces_live.workspace15_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 15"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace15 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace16_style }}"
+visible = "{{ workspaces_live.workspace16_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 16"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace16 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace17_style }}"
+visible = "{{ workspaces_live.workspace17_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 17"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace17 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace18_style }}"
+visible = "{{ workspaces_live.workspace18_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 18"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace18 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace19_style }}"
+visible = "{{ workspaces_live.workspace19_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 19"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace19 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace20_style }}"
+visible = "{{ workspaces_live.workspace20_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 20"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace20 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace21_style }}"
+visible = "{{ workspaces_live.workspace21_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 21"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace21 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace22_style }}"
+visible = "{{ workspaces_live.workspace22_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 22"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace22 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace23_style }}"
+visible = "{{ workspaces_live.workspace23_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 23"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace23 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace24_style }}"
+visible = "{{ workspaces_live.workspace24_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 24"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace24 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace25_style }}"
+visible = "{{ workspaces_live.workspace25_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 25"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace25 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace26_style }}"
+visible = "{{ workspaces_live.workspace26_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 26"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace26 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace27_style }}"
+visible = "{{ workspaces_live.workspace27_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 27"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace27 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace28_style }}"
+visible = "{{ workspaces_live.workspace28_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 28"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace28 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace29_style }}"
+visible = "{{ workspaces_live.workspace29_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 29"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace29 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace30_style }}"
+visible = "{{ workspaces_live.workspace30_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 30"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace30 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace31_style }}"
+visible = "{{ workspaces_live.workspace31_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 31"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace31 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-module", "top-bar-workspace"]
+style = "{{ workspaces_live.workspace32_style }}"
+visible = "{{ workspaces_live.workspace32_visible }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --workspace-slot 32"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-inherit-color"]
+text = "{{ workspaces_live.workspace32 }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+vexpand = true
+spacing = 0
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-separator"]
+text = ""
+
+[windows.widgets.children.children.layout]
+valign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-window"]
+text = "{{ top_bar.window }}"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+text_align = "start"
+
+[windows.widgets.children.layout]
+valign = "center"
+vexpand = true
+spacing = 0
+hexpand = true
+halign = "start"
+homogeneous = false
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["top-bar-center"]
+tooltip = "{{ top_bar.spotify }}"
+visible = "{{ top_bar.spotify_visible }}"
+
+[windows.widgets.children.on_click]
+type = "command"
+command = "/home/eugene/.local/bin/widgex open --toggle dashboard"
+
+[windows.widgets.children.on_right_click]
+type = "command"
+command = "/home/eugene/.local/bin/widgex open --toggle lyrics_overlay"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-spotify-icon"]
+text = "{{ top_bar.spotify_icon }}"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-spotify"]
+text = "{{ top_bar.spotify }}"
+
+[windows.widgets.children.children.layout]
+text_align = "center"
+max_width_chars = 40
+
+[windows.widgets.children.layout]
+valign = "center"
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["top-bar-right"]
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-status", "top-bar-gpu"]
+tooltip = "GPU temperature: {{ top_bar.gpu }}"
+text = "{{ top_bar.gpu }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "nvidia-settings"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-status", "top-bar-cpu"]
+tooltip = "{{ bar_details.cpu }}"
+text = "{{ top_bar.cpu }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "kitty btop"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-status", "top-bar-memory"]
+tooltip = "Memory usage: {{ top_bar.memory }}"
+text = "{{ top_bar.memory }}"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-status", "top-bar-disk"]
+tooltip = "Root filesystem usage: {{ top_bar.disk }}"
+text = "{{ top_bar.disk }}"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["top-bar-separator"]
+text = ""
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "bash /home/eugene/.config/waybar/scripts/wallpaper.sh"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["top-bar-notification-group"]
+
+[windows.widgets.children.children.layout]
+valign = "center"
+spacing = 0
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-status", "top-bar-volume"]
+tooltip = "Volume: {{ bar_controls.volume }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "pavucontrol"
+
+[windows.widgets.children.children.children.on_scroll_up]
+type = "command"
+command = "pactl set-sink-volume @DEFAULT_SINK@ +1%"
+
+[windows.widgets.children.children.children.on_scroll_down]
+type = "command"
+command = "pactl set-sink-volume @DEFAULT_SINK@ -1%"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-volume"]
+text = "{{ bar_controls.volume }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-status", "top-bar-network"]
+tooltip = "{{ bar_details.network }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "nm-connection-editor"
+
+[windows.widgets.children.children.children.on_right_click]
+type = "command"
+command = "rfkill toggle wifi"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-network"]
+text = "{{ top_bar.network }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-status", "top-bar-bluetooth"]
+tooltip = "{{ bar_details.bluetooth }}"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "blueman-manager"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-bluetooth"]
+text = "{{ top_bar.bluetooth }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-status", "top-bar-github"]
+tooltip = "GitHub notifications"
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "xdg-open https://github.com/notifications"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["top-bar-github"]
+text = "{{ top_bar.github }}"
+
+[windows.widgets.children.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["top-bar-status", "top-bar-updates"]
+tooltip = "Package updates: {{ top_bar.updates }}"
+text = "{{ top_bar.updates }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+class = ["top-bar-status", "top-bar-notifications"]
+
+[windows.widgets.children.children.children.on_click]
+type = "command"
+command = "swaync-client -t -sw"
+
+[windows.widgets.children.children.children.on_right_click]
+type = "command"
+command = "swaync-client -d -sw"
+
+[[windows.widgets.children.children.children.children]]
+type = "box"
+direction = "row"
+class = ["top-bar-notifications"]
+
+[[windows.widgets.children.children.children.children.children]]
+type = "label"
+text = "{{ notifications_live.icon }}"
+
+[[windows.widgets.children.children.children.children.children]]
+type = "label"
+class = ["top-bar-notification-dot"]
+text = "{{ notifications_live.indicator }}"
+style = "{{ notifications_live.indicator_style }}"
+
+[windows.widgets.children.children.children.children.children.layout]
+valign = "start"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children]]
+type = "button"
+class = ["top-bar-clock"]
+tooltip = "{{ bar_details.calendar }}"
+text = "{{ bar_controls.clock }}"
+
+[windows.widgets.children.children.on_click]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/top_bar.py --toggle-clock"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+text_align = "start"
+
+[windows.widgets.children.layout]
+valign = "center"
+vexpand = true
+spacing = 0
+hexpand = true
+halign = "end"
+homogeneous = false
+
+[windows.widgets.layout]
+hexpand = true
+vexpand = true
+
+[windows.margin]
+top = 10
+left = 20
+right = 20

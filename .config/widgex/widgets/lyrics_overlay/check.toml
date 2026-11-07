@@ -1,0 +1,5 @@
+version = 1
+modules = ["module.toml"]
+
+[permissions]
+allow_shell = true

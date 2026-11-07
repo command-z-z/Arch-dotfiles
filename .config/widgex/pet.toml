@@ -1,0 +1,23 @@
+[[sources]]
+id = "brain"
+kind = "shell"
+mode = "listen"
+format = "json"
+interval_ms = 100
+command = "python3 -B /home/eugene/.config/widgex/widgets/pet/brain.py"
+[[windows]]
+id = "pet"
+layer = "top"
+anchor = ["top", "bottom", "left", "right"]
+click_through = true
+[[windows.widgets]]
+type = "animation"
+src = "/home/eugene/.config/widgex/pets/jinx/spritesheet.webp"
+frame_width = 192
+frame_height = 208
+cols = 8
+frame_row = "{{ brain.row }}"
+frame_count = "{{ brain.count }}"
+frame_durations = [120, 120, 120, 120, 120, 120, 120, 120]
+draw_x = "{{ brain.x }}"
+draw_y = "{{ brain.y }}"

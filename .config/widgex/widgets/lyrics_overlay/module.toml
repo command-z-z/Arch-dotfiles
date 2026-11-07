@@ -1,0 +1,56 @@
+css = "style.css"
+
+[[windows]]
+id = "lyrics_overlay"
+title = "Lyrics Overlay"
+layer = "top"
+anchor = ["top"]
+exclusive_zone = -1
+click_through = true
+
+[windows.margin]
+top = 113
+
+[windows.size]
+width = 600
+height = 120
+
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["lyrics_overlay_container", "native-lyrics_overlay"]
+
+[[windows.widgets.children]]
+type = "label"
+class = ["lyrics_overlay_current"]
+text = "{{ current_lyric.current }}"
+
+[windows.widgets.children.layout]
+halign = "center"
+text_align = "center"
+wrap = false
+ellipsize = false
+
+[[windows.widgets.children]]
+type = "label"
+class = ["lyrics_overlay_next"]
+text = "{{ current_lyric.next }}"
+
+[windows.widgets.children.layout]
+halign = "center"
+text_align = "center"
+wrap = false
+ellipsize = false
+
+[windows.widgets.layout]
+hexpand = true
+vexpand = true
+
+[[sources]]
+id = "current_lyric"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 1000
+timeout_ms = 15000
+command = "python3 -B /home/eugene/.config/widgex/scripts/lyrics.py"

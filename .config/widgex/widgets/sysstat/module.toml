@@ -1,0 +1,265 @@
+# Generated native migration; original module remains untouched.
+css = "style.css"
+
+[[sources]]
+id = "sysstat"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 2000
+command = "cd /home/eugene/.config/widgex/widgets/sysstat && python3 ./src/sysstat.py | python3 -B /home/eugene/.config/widgex/scripts/native_source.py json"
+
+[[windows]]
+id = "sysstat"
+title = "System Stats"
+layer = "background"
+anchor = ["top", "left"]
+click_through = true
+
+[windows.margin]
+top = 980
+left = 24
+
+[windows.size]
+width = 420
+height = 320
+
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["stat-card", "native-sysstat"]
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["stat-top-row"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["stat-metric-col"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-label"]
+text = "CPU"
+
+[windows.widgets.children.children.children.layout]
+halign = "fill"
+hexpand = true
+text_align = "center"
+
+[[windows.widgets.children.children.children]]
+type = "ring"
+class = ["stat-ring-wrap"]
+value = "{{ sysstat.cpu_pct }}"
+text = "{{ sysstat.cpu_pct }}%"
+style = "color: #8caaee;"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+width = 64
+height = 64
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-ring-detail"]
+text = "{{ sysstat.cpu_detail }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "fill"
+hexpand = true
+text_align = "center"
+
+[windows.widgets.children.children.layout]
+valign = "fill"
+spacing = 6
+vexpand = false
+hexpand = true
+
+[[windows.widgets.children.children]]
+type = "box"
+class = ["stat-v-div"]
+
+[windows.widgets.children.children.layout]
+valign = "fill"
+width = 1
+vexpand = true
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["stat-metric-col"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-label"]
+text = "GPU"
+
+[windows.widgets.children.children.children.layout]
+halign = "fill"
+hexpand = true
+text_align = "center"
+
+[[windows.widgets.children.children.children]]
+type = "ring"
+class = ["stat-ring-wrap"]
+value = "{{ sysstat.gpu_pct }}"
+text = "{{ sysstat.gpu_pct }}%"
+style = "color: #a6d189;"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+width = 64
+height = 64
+valign = "center"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-ring-detail"]
+text = "{{ sysstat.gpu_detail }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "fill"
+hexpand = true
+text_align = "center"
+
+[windows.widgets.children.children.layout]
+valign = "fill"
+spacing = 6
+vexpand = false
+hexpand = true
+
+[windows.widgets.children.layout]
+hexpand = true
+
+[[windows.widgets.children]]
+type = "box"
+class = ["stat-h-div"]
+
+[windows.widgets.children.layout]
+hexpand = true
+height = 1
+
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["stat-section"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["stat-section-hdr"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-hdr-label"]
+text = "Memory"
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+width = 96
+
+[[windows.widgets.children.children.children]]
+type = "spacer"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-hdr-pct"]
+text = "{{ sysstat.mem_pct }}%"
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+hexpand = true
+
+[[windows.widgets.children.children]]
+type = "range_bar"
+class = ["stat-bar"]
+style = "color: #ca9ee6;"
+value = "0,{{ sysstat.mem_pct }}"
+
+[windows.widgets.children.children.layout]
+hexpand = true
+height = 6
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["stat-section-detail"]
+text = "{{ sysstat.mem_detail }}"
+
+[windows.widgets.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.layout]
+hexpand = true
+spacing = 5
+
+[[windows.widgets.children]]
+type = "box"
+class = ["stat-h-div"]
+
+[windows.widgets.children.layout]
+hexpand = true
+height = 1
+
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["stat-section"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["stat-section-hdr"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-hdr-label"]
+text = "Disk  /"
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+width = 96
+
+[[windows.widgets.children.children.children]]
+type = "spacer"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["stat-section-hdr-pct"]
+text = "{{ sysstat.disk_pct }}%"
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+hexpand = true
+
+[[windows.widgets.children.children]]
+type = "range_bar"
+class = ["stat-bar"]
+style = "color: #ef9f76;"
+value = "0,{{ sysstat.disk_pct }}"
+
+[windows.widgets.children.children.layout]
+hexpand = true
+height = 6
+
+[[windows.widgets.children.children]]
+type = "label"
+class = ["stat-section-detail"]
+text = "{{ sysstat.disk_detail }}"
+
+[windows.widgets.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.layout]
+hexpand = true
+spacing = 5
+
+[windows.widgets.layout]
+hexpand = true
+vexpand = true

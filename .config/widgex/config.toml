@@ -1,33 +1,30 @@
+# Widgex native desktop profile. Standard XDG configuration location.
+# Clock/date use the background layer so application windows stay above them.
 version = 1
-
-modules = [
-  "widgets/wlogout/config.toml",
-  "widgets/top-bar/config.toml",
-  "widgets/dashboard/config.toml",
-  "widgets/lyrics_overlay/config.toml",
-  "widgets/clock/config.toml",
-  "widgets/date/config.toml",
-  "widgets/memo/config.toml",
-  "widgets/weather/config.toml",
-  "widgets/sysstat/config.toml",
-  "widgets/agent-monitor/config.toml",
-  "widgets/pet/config.toml",
-  "widgets/swaync/config.toml",
-]
-
+modules = ["date.toml", "pet.toml", "widgets/weather/module.toml", "widgets/memo/module.toml", "widgets/sysstat/module.toml", "widgets/agent-monitor/module.toml", "widgets/top-bar/module.toml", "widgets/dashboard/module.toml", "widgets/lyrics_overlay/module.toml", "widgets/wlogout/module.toml"]
 [permissions]
 allow_shell = true
-
 [theme]
 css = "style.css"
-css_files = ["themes/catppuccin-frappe.css"]
-
-# Shared sources (used by multiple widgets)
-
 [[sources]]
-id = "current_lyric"
+id = "clock_hands"
 kind = "shell"
 mode = "poll"
 format = "json"
 interval_ms = 1000
-command = "./src/lyrics.py"
+command = "sh /home/eugene/.config/widgex/widgets/clock/src/clock_hands.sh"
+[[windows]]
+id = "clock"
+title = "Clock"
+layer = "background"
+anchor = ["top", "left"]
+click_through = true
+[windows.margin]
+top = 24
+left = 24
+[windows.size]
+width = 190
+height = 190
+[[windows.widgets]]
+type = "analog_clock"
+value = "{{ clock_hands.hour }},{{ clock_hands.minute }},{{ clock_hands.second }}"

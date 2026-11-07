@@ -7,7 +7,6 @@ from pathlib import Path
 STALE_AFTER_SECONDS = 300
 DONE_VISIBLE_SECONDS = 3
 CLAUDE_EVENT_FILE = Path("/tmp/widgex-agent-claude.json")
-CODEX_EVENT_FILE = Path("/tmp/widgex-agent-codex.json")
 
 
 COLORS = {
@@ -83,29 +82,21 @@ def agent_state(name, path):
     return LABELS[state], detail, COLORS[state], SCORES[state], ts
 
 
-def primary_state(claude, codex):
+def primary_state(claude):
     c_state, c_detail, c_color, c_score, c_ts = claude
-    x_state, x_detail, x_color, x_score, x_ts = codex
 
     if c_state == "Working":
         return "Claude Working", c_detail, c_color, c_score, c_ts
-    if x_state == "Working":
-        return "Codex Working", x_detail, x_color, x_score, x_ts
-    if x_state == "Active":
-        return "Codex Active", x_detail, x_color, x_score, x_ts
     if c_state == "Active":
         return "Claude Active", c_detail, c_color, c_score, c_ts
     if c_state == "Done":
         return "Claude Done", c_detail, c_color, c_score, c_ts
-    if x_state == "Done":
-        return "Codex Done", x_detail, x_color, x_score, x_ts
-    return "All Quiet", "no active hook signal", COLORS["idle"], 8, max(c_ts, x_ts)
+    return "Claude Idle", "no active hook signal", COLORS["idle"], 8, c_ts
 
 
 def main():
     claude = agent_state("Claude", CLAUDE_EVENT_FILE)
-    codex = agent_state("Codex", CODEX_EVENT_FILE)
-    primary, detail, color, score, last_ts = primary_state(claude, codex)
+    primary, detail, color, score, last_ts = primary_state(claude)
 
     payload = {
         "title": "AI Agent",
@@ -119,11 +110,7 @@ def main():
         "claude_detail": claude[1],
         "claude_style": f"color: {claude[2]};",
         "claude_bar_style": f"--agent-color: {claude[2]}; --agent-score: {claude[3]}%;",
-        "codex_state": codex[0],
-        "codex_detail": codex[1],
-        "codex_style": f"color: {codex[2]};",
-        "codex_bar_style": f"--agent-color: {codex[2]}; --agent-score: {codex[3]}%;",
-        "source": "hooks + event parse",
+        "source": "Claude hook + event parse",
         "updated": age_label(last_ts),
     }
     print(json.dumps(payload, ensure_ascii=False))

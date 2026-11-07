@@ -8,18 +8,8 @@ from pathlib import Path
 
 EVENT_FILES = {
     "claude": Path("/tmp/widgex-agent-claude.json"),
-    "codex": Path("/tmp/widgex-agent-codex.json"),
 }
 LEGACY_CLAUDE_FILE = Path("/tmp/widgex-pet-claude")
-
-CODEX_STATE_BY_EVENT = {
-    "SessionStart": ("active", "session start"),
-    "UserPromptSubmit": ("active", "prompt submitted"),
-    "PreToolUse": ("working", "pre tool use"),
-    "PermissionRequest": ("working", "permission request"),
-    "PostToolUse": ("working", "post tool use"),
-    "Stop": ("done", "turn stop"),
-}
 
 CLAUDE_STATE_BY_EVENT = {
     "PreToolUse": ("working", "tool use hook"),
@@ -53,8 +43,6 @@ def infer_state(agent, payload, explicit_state):
     if explicit_state:
         state = explicit_state
         detail = event if event != "manual" else state.replace("_", " ")
-    elif agent == "codex":
-        state, detail = CODEX_STATE_BY_EVENT.get(event, ("active", event))
     else:
         state, detail = CLAUDE_STATE_BY_EVENT.get(event, ("active", event))
     if tool:

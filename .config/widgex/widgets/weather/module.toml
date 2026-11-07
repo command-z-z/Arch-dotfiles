@@ -1,0 +1,649 @@
+# Generated native migration; original module remains untouched.
+css = "style.css"
+
+[[sources]]
+id = "weather"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 600000
+timeout_ms = 15000
+command = "cd /home/eugene/.config/widgex/widgets/weather && python3 ./src/weather.py Dongyang --label 'Dongyang, Zhejiang' | python3 -B /home/eugene/.config/widgex/scripts/native_source.py json"
+
+[[windows]]
+id = "weather"
+title = "Weather"
+layer = "background"
+anchor = ["top", "left"]
+click_through = true
+
+[windows.margin]
+top = 230
+left = 24
+
+[windows.size]
+width = 420
+height = 390
+
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["weather-card", "native-weather"]
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["weather-top"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-main"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-city"]
+text = "{{ weather.place }}"
+
+[windows.widgets.children.children.children.layout]
+max_width_chars = 22
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-temp"]
+text = "{{ weather.temp }}"
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+valign = "start"
+vexpand = true
+
+[[windows.widgets.children.children]]
+type = "spacer"
+
+[windows.widgets.children.children.layout]
+valign = "start"
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-meta"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-icon"]
+text = "{{ weather.icon }}"
+style = "color: {{ weather.icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+halign = "end"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-condition"]
+text = "{{ weather.condition }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "end"
+text_align = "end"
+max_width_chars = 16
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-range"]
+text = "{{ weather.range }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "end"
+text_align = "end"
+
+[windows.widgets.children.children.layout]
+valign = "start"
+spacing = 3
+
+[windows.widgets.children.layout]
+hexpand = true
+
+[[windows.widgets.children]]
+type = "box"
+class = ["weather-divider"]
+
+[windows.widgets.children.layout]
+hexpand = true
+height = 1
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["weather-hours"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-hour"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-time"]
+text = "{{ weather.hour1_time }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-icon"]
+text = "{{ weather.hour1_icon }}"
+style = "color: {{ weather.hour1_icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-temp"]
+text = "{{ weather.hour1_temp }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+spacing = 5
+vexpand = false
+hexpand = true
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-hour"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-time"]
+text = "{{ weather.hour2_time }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-icon"]
+text = "{{ weather.hour2_icon }}"
+style = "color: {{ weather.hour2_icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-temp"]
+text = "{{ weather.hour2_temp }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+spacing = 5
+vexpand = false
+hexpand = true
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-hour"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-time"]
+text = "{{ weather.hour3_time }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-icon"]
+text = "{{ weather.hour3_icon }}"
+style = "color: {{ weather.hour3_icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-temp"]
+text = "{{ weather.hour3_temp }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+spacing = 5
+vexpand = false
+hexpand = true
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-hour"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-time"]
+text = "{{ weather.hour4_time }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-icon"]
+text = "{{ weather.hour4_icon }}"
+style = "color: {{ weather.hour4_icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-temp"]
+text = "{{ weather.hour4_temp }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+spacing = 5
+vexpand = false
+hexpand = true
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["weather-hour"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-time"]
+text = "{{ weather.hour5_time }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-icon"]
+text = "{{ weather.hour5_icon }}"
+style = "color: {{ weather.hour5_icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-hour-temp"]
+text = "{{ weather.hour5_temp }}"
+
+[windows.widgets.children.children.children.layout]
+halign = "center"
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+valign = "center"
+spacing = 5
+vexpand = false
+hexpand = true
+
+[windows.widgets.children.layout]
+hexpand = true
+homogeneous = true
+
+[[windows.widgets.children]]
+type = "box"
+class = ["weather-divider"]
+
+[windows.widgets.children.layout]
+hexpand = true
+height = 1
+
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["weather-days"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["weather-day"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-name"]
+text = "{{ weather.day1_name }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 32
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-icon"]
+text = "{{ weather.day1_icon }}"
+style = "color: {{ weather.day1_icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "center"
+width = 22
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-low"]
+text = "{{ weather.day1_low }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "end"
+width = 28
+
+[[windows.widgets.children.children.children]]
+type = "range_bar"
+class = ["weather-day-bar"]
+style = "color: #81c8be;"
+value = "{{ weather.day1_bar_start }},{{ weather.day1_bar_end }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+height = 6
+hexpand = true
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-high"]
+text = "{{ weather.day1_high }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 28
+
+[windows.widgets.children.children.layout]
+hexpand = true
+spacing = 8
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["weather-day"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-name"]
+text = "{{ weather.day2_name }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 32
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-icon"]
+text = "{{ weather.day2_icon }}"
+style = "color: {{ weather.day2_icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "center"
+width = 22
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-low"]
+text = "{{ weather.day2_low }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "end"
+width = 28
+
+[[windows.widgets.children.children.children]]
+type = "range_bar"
+class = ["weather-day-bar"]
+style = "color: #81c8be;"
+value = "{{ weather.day2_bar_start }},{{ weather.day2_bar_end }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+height = 6
+hexpand = true
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-high"]
+text = "{{ weather.day2_high }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 28
+
+[windows.widgets.children.children.layout]
+hexpand = true
+spacing = 8
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["weather-day"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-name"]
+text = "{{ weather.day3_name }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 32
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-icon"]
+text = "{{ weather.day3_icon }}"
+style = "color: {{ weather.day3_icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "center"
+width = 22
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-low"]
+text = "{{ weather.day3_low }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "end"
+width = 28
+
+[[windows.widgets.children.children.children]]
+type = "range_bar"
+class = ["weather-day-bar"]
+style = "color: #81c8be;"
+value = "{{ weather.day3_bar_start }},{{ weather.day3_bar_end }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+height = 6
+hexpand = true
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-high"]
+text = "{{ weather.day3_high }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 28
+
+[windows.widgets.children.children.layout]
+hexpand = true
+spacing = 8
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["weather-day"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-name"]
+text = "{{ weather.day4_name }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 32
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-icon"]
+text = "{{ weather.day4_icon }}"
+style = "color: {{ weather.day4_icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "center"
+width = 22
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-low"]
+text = "{{ weather.day4_low }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "end"
+width = 28
+
+[[windows.widgets.children.children.children]]
+type = "range_bar"
+class = ["weather-day-bar"]
+style = "color: #81c8be;"
+value = "{{ weather.day4_bar_start }},{{ weather.day4_bar_end }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+height = 6
+hexpand = true
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-high"]
+text = "{{ weather.day4_high }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 28
+
+[windows.widgets.children.children.layout]
+hexpand = true
+spacing = 8
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "row"
+class = ["weather-day"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-name"]
+text = "{{ weather.day5_name }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 32
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-icon"]
+text = "{{ weather.day5_icon }}"
+style = "color: {{ weather.day5_icon_color }};"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "center"
+width = 22
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-low"]
+text = "{{ weather.day5_low }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "end"
+width = 28
+
+[[windows.widgets.children.children.children]]
+type = "range_bar"
+class = ["weather-day-bar"]
+style = "color: #81c8be;"
+value = "{{ weather.day5_bar_start }},{{ weather.day5_bar_end }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+height = 6
+hexpand = true
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["weather-day-high"]
+text = "{{ weather.day5_high }}"
+
+[windows.widgets.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 28
+
+[windows.widgets.children.children.layout]
+hexpand = true
+spacing = 8
+
+[windows.widgets.children.layout]
+hexpand = true
+vexpand = true
+homogeneous = false
+spacing = 4
+
+[windows.widgets.layout]
+hexpand = true
+vexpand = true

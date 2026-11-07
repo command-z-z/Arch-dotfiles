@@ -1,15 +1,13 @@
+.native-dashboard { color: #cad3f5; font-family: Inter, "Noto Sans", sans-serif; }
+.native-dashboard button { all: unset; }
+
 .container_play_card {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border: 5px solid var(--ctp-text);
+  border: 5px solid #cad3f5;
   border-radius: 20px;
-  background-color: var(--ctp-crust);
+  background-color: #181926;
 }
 
 .album_img {
-  flex: 0 0 330px;
-  height: 350px;
   margin: 25px 28px;
   background-position: center;
   background-repeat: no-repeat;
@@ -17,10 +15,7 @@
 }
 
 .play_info {
-  flex: 1 1 auto;
   min-width: 0;
-  height: 100%;
-  justify-content: space-between;
   padding-right: 20px;
 }
 
@@ -30,33 +25,19 @@
 
 .song_detail_box {
   min-width: 0;
-  gap: 0;
 }
 
 .current_song {
-  display: block;
-  max-width: 8ch;
   margin-top: 25px;
-  overflow: hidden;
-  color: var(--ctp-text);
+  color: #cad3f5;
   font-size: 40px;
   font-weight: bold;
-  line-height: 1.1;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-.current_artist,
-.current_album {
-  display: block;
-  max-width: 15ch;
-  overflow: hidden;
-  color: var(--ctp-text);
+.current_artist, .current_album {
+  color: #cad3f5;
   font-family: light, Inter, ui-sans-serif, system-ui, sans-serif;
   font-size: 30px;
-  line-height: 1.15;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .current_artist {
@@ -65,141 +46,60 @@
 
 .lyrics_box {
   margin-top: 8px;
-  gap: 0;
 }
 
 .current_lyric {
-  display: block;
-  max-width: 17ch;
-  overflow: hidden;
-  color: var(--ctp-green);
+  color: #a6da95;
   font-family: light, Inter, ui-sans-serif, system-ui, sans-serif;
   font-size: 22px;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .lyric_context {
-  display: block;
-  max-width: 20ch;
-  overflow: hidden;
-  color: var(--ctp-overlay2);
+  color: #939ab7;
   font-family: light, Inter, ui-sans-serif, system-ui, sans-serif;
   font-size: 17px;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .control_button_box {
-  width: 100%;
   margin-bottom: 40px;
 }
 
-.progress_row {
-  width: 100%;
-  align-items: center;
-  gap: 0;
-}
-
-.progress_time_position,
-.progress_time_length {
-  flex: 0 0 54px;
+.progress_time_position, .progress_time_length {
   margin-top: 12px;
-  color: var(--ctp-text);
+  color: #cad3f5;
   font-size: 17px;
   font-style: italic;
 }
 
 .progress_time_position {
   margin-left: 0;
-  text-align: left;
 }
 
 .progress_time_length {
   margin-right: 0;
-  text-align: right;
 }
 
 .progress_song {
-  --progress-track-height: 8px;
-  --progress-thumb-size: 18px;
-  flex: 1 1 auto;
-  height: var(--progress-thumb-size);
   margin-top: 12px;
-  appearance: none;
-  -webkit-appearance: none;
-  background: linear-gradient(
-    to right,
-    var(--ctp-green) 0%,
-    var(--ctp-green) calc(var(--widgex-progress-value, 0) * 1%),
-    var(--ctp-overlay2) calc(var(--widgex-progress-value, 0) * 1%),
-    var(--ctp-overlay2) 100%
-  );
   border-radius: 999px;
-  cursor: pointer;
-}
-
-.progress_song::-webkit-slider-runnable-track {
-  height: var(--progress-track-height);
-  border-radius: 999px;
-  background: transparent;
-}
-
-.progress_song::-webkit-slider-thumb {
-  width: var(--progress-thumb-size);
-  height: var(--progress-thumb-size);
-  margin-top: calc((var(--progress-track-height) - var(--progress-thumb-size)) / 2);
-  -webkit-appearance: none;
-  border: none;
-  border-radius: 50%;
-  background: #f5f7fb;
-  box-shadow: none;
-}
-
-.progress_song::-moz-range-track {
-  height: var(--progress-track-height);
-  border-radius: 999px;
-  background: var(--ctp-overlay2);
-}
-
-.progress_song::-moz-range-progress {
-  height: var(--progress-track-height);
-  border-radius: 999px;
-  background: var(--ctp-green);
-}
-
-.progress_song::-moz-range-thumb {
-  width: var(--progress-thumb-size);
-  height: var(--progress-thumb-size);
-  border: none;
-  border-radius: 50%;
-  background: #f5f7fb;
 }
 
 .buttons_info {
-  width: 100%;
   margin-top: 16px;
   margin-right: 0;
   margin-left: 0;
-  justify-content: space-evenly;
-  align-items: center;
   border-radius: 30px;
-  background-color: var(--ctp-green);
+  background-color: #a6da95;
 }
 
-.control_buttons,
-.play_button {
+.native-dashboard .control_buttons, .native-dashboard .play_button {
   padding: 0;
   border: none;
   border-radius: 0;
-  color: var(--ctp-crust);
+  color: #181926;
   background: transparent;
-  cursor: pointer;
   font-family: "Symbols Nerd Font", "JetBrainsMono Nerd Font", "FiraCode Nerd Font", "Noto Sans Symbols 2", sans-serif;
-  line-height: 1;
-  transition: all 0.2s ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .buttons_info .widgex-button {
@@ -209,24 +109,27 @@
   background: transparent;
 }
 
-.control_buttons {
+.native-dashboard .control_buttons {
   font-size: 50px;
 }
 
-.control_buttons:hover {
+.native-dashboard .control_buttons:hover {
   font-size: 45px;
 }
 
-.play_button {
+.native-dashboard .play_button {
   font-size: 60px;
+  margin-right: 16px;
 }
 
-.shuffle,
-.previous,
-.loop {
-  margin-right: 1rem;
+.native-dashboard .shuffle, .native-dashboard .previous, .native-dashboard .loop {
+  margin-right: 16px;
 }
 
-.next {
-  margin-left: 1rem;
+.native-dashboard .next {
+  margin-left: 16px;
 }
+
+.progress_song trough { min-height:8px; background:#939ab7; border-radius:8px; }
+.progress_song highlight { background:#a6da95; }
+.progress_song slider { min-width:18px; min-height:18px; background:#f5f7fb; border-radius:999px; }

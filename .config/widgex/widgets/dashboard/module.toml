@@ -1,0 +1,257 @@
+css = "style.css"
+
+[[sources]]
+id = "metadata"
+kind = "shell"
+mode = "listen"
+format = "json"
+interval_ms = 1000
+timeout_ms = 15000
+command = "python3 -B /home/eugene/.config/widgex/scripts/metadata.py"
+
+[[sources]]
+id = "native_music"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 1000
+timeout_ms = 15000
+command = "python3 -B /home/eugene/.config/widgex/scripts/native_source.py music"
+
+[[sources]]
+id = "dashboard_lyric"
+kind = "shell"
+mode = "poll"
+format = "json"
+interval_ms = 1000
+timeout_ms = 15000
+command = "python3 -B /home/eugene/.config/widgex/scripts/lyrics.py"
+
+[[windows]]
+id = "dashboard"
+title = "Spotify Dashboard"
+layer = "top"
+anchor = ["top", "left"]
+click_through = false
+
+[windows.margin]
+left = 1536
+top = 0
+
+[windows.size]
+width = 768
+height = 410
+
+[[windows.widgets]]
+type = "box"
+direction = "row"
+class = ["container_play_card", "native-dashboard"]
+
+[[windows.widgets.children]]
+type = "image"
+class = ["album_img"]
+src = "{{ metadata.image }}"
+
+[windows.widgets.children.layout]
+width = 330
+height = 350
+valign = "center"
+
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["play_info"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["artist_and_song_container"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+class = ["current_song"]
+text = "{{ metadata.title }}"
+
+[windows.widgets.children.children.children.layout]
+max_width_chars = 8
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "column"
+class = ["song_detail_box"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["current_artist"]
+text = "{{ metadata.artist }}"
+
+[windows.widgets.children.children.children.children.layout]
+max_width_chars = 15
+text_align = "start"
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["current_album"]
+text = "{{ metadata.album }}"
+
+[windows.widgets.children.children.children.children.layout]
+max_width_chars = 15
+text_align = "start"
+
+[[windows.widgets.children.children.children.children]]
+type = "box"
+direction = "column"
+class = ["lyrics_box"]
+
+[[windows.widgets.children.children.children.children.children]]
+type = "label"
+class = ["current_lyric"]
+text = "{{ dashboard_lyric.current }}"
+
+[windows.widgets.children.children.children.children.children.layout]
+text_align = "start"
+wrap = false
+ellipsize = true
+max_width_chars = 1
+
+[[windows.widgets.children.children.children.children.children]]
+type = "label"
+class = ["lyric_context"]
+text = "{{ dashboard_lyric.next }}"
+
+[windows.widgets.children.children.children.children.children.layout]
+text_align = "start"
+wrap = false
+ellipsize = true
+max_width_chars = 1
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["control_button_box"]
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["progress_row"]
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["progress_time_position"]
+text = "{{ native_music.position }}"
+
+[windows.widgets.children.children.children.children.layout]
+valign = "center"
+text_align = "start"
+width = 54
+
+[[windows.widgets.children.children.children.children]]
+type = "slider"
+class = ["progress_song"]
+value = "{{ native_music.progress }}"
+
+[windows.widgets.children.children.children.children.on_change]
+type = "command"
+command = "python3 -B /home/eugene/.config/widgex/scripts/native_source.py seek {}"
+
+[windows.widgets.children.children.children.children.layout]
+valign = "center"
+hexpand = true
+width = 100
+
+[[windows.widgets.children.children.children.children]]
+type = "label"
+class = ["progress_time_length"]
+text = "{{ native_music.length }}"
+
+[windows.widgets.children.children.children.children.layout]
+valign = "center"
+text_align = "end"
+width = 54
+
+[windows.widgets.children.children.children.layout]
+hexpand = true
+
+[[windows.widgets.children.children.children]]
+type = "box"
+direction = "row"
+class = ["buttons_info"]
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["control_buttons", "shuffle"]
+text = "{{ native_music.shuffle_icon }}"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "playerctl -p spotify shuffle toggle"
+
+[windows.widgets.children.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["control_buttons", "previous"]
+text = "󰼨"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "playerctl -p spotify previous"
+
+[windows.widgets.children.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["play_button"]
+text = "{{ native_music.play_icon }}"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "playerctl -p spotify play-pause"
+
+[windows.widgets.children.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["control_buttons", "next"]
+text = "󰼧"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "playerctl -p spotify next"
+
+[windows.widgets.children.children.children.children.layout]
+valign = "center"
+
+[[windows.widgets.children.children.children.children]]
+type = "button"
+class = ["control_buttons", "loop"]
+text = "{{ native_music.loop_icon }}"
+
+[windows.widgets.children.children.children.children.on_click]
+type = "command"
+command = "cd /home/eugene/.config/widgex/widgets/dashboard && ./src/toggle_loop.sh"
+
+[windows.widgets.children.children.children.children.layout]
+valign = "center"
+
+[windows.widgets.children.children.children.layout]
+hexpand = true
+homogeneous = true
+
+[windows.widgets.children.children.layout]
+hexpand = true
+valign = "end"
+vexpand = true
+
+[windows.widgets.children.layout]
+vexpand = true
+homogeneous = false
+width = 300
+
+[windows.widgets.layout]
+hexpand = true
+vexpand = true

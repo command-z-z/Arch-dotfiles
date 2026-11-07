@@ -12,8 +12,8 @@ from gi.repository import Playerctl, GLib
 
 
 CONFIG_DIR = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")) / "widgex"
-CACHE_DIR = CONFIG_DIR / "spotify_cache"
-DEFAULT_IMAGE = "./spotify_cache/default.png"
+CACHE_DIR = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "widgex" / "spotify"
+DEFAULT_IMAGE = '/home/eugene/.config/widgex/assets/default-cover.png'
 MAX_ART_CACHE = 8
 PLAYER_NAME = "spotify"
 
@@ -58,7 +58,7 @@ def save_image(url):
     latest_path = CACHE_DIR / "album_art.png"
     shutil.copy(dst_path, latest_path)
     cleanup_old_art(dst_path)
-    return f"./spotify_cache/{dst_path.name}"
+    return str(dst_path)
 
 
 def cleanup_old_art(keep_path):
@@ -114,9 +114,9 @@ def print_default_metadata():
         "tint": "#c6d0f5",
         "dark": "#232634",
         "bright": "#ebdbb2",
-        "title": "Unknown",
-        "artist": "Unknown",
-        "album": "Unknown",
+        "title": "No Spotify player",
+        "artist": "Playback unavailable",
+        "album": "",
         "current_player": "none",
     }
     print(json.dumps(metadata), flush=True)

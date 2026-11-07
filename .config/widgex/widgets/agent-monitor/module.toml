@@ -1,0 +1,244 @@
+css = "style.css"
+
+[[sources]]
+id = "codex"
+kind = "shell"
+mode = "listen"
+format = "json"
+command = "python3 -B ./src/codex_monitor.py --listen"
+
+[[windows]]
+id = "agent-monitor"
+title = "Codex Monitor"
+layer = "background"
+anchor = ["top", "left"]
+click_through = true
+
+[windows.margin]
+top = 1316
+left = 24
+
+[windows.size]
+width = 420
+height = 300
+
+[[windows.widgets]]
+type = "box"
+direction = "column"
+class = ["codex-card"]
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["codex-header"]
+
+[[windows.widgets.children.children]]
+type = "label"
+text = ">_"
+class = ["codex-mark"]
+
+[windows.widgets.children.children.layout]
+text_align = "start"
+
+[[windows.widgets.children.children]]
+type = "label"
+text = "CODEX"
+class = ["codex-title"]
+
+[windows.widgets.children.children.layout]
+text_align = "start"
+width = 60
+
+[[windows.widgets.children.children]]
+type = "spacer"
+
+[[windows.widgets.children.children]]
+type = "label"
+text = "●  {{ codex.status }}"
+class = ["codex-status"]
+style = "{{ codex.status_style }}"
+
+[windows.widgets.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.layout]
+hexpand = true
+spacing = 9
+
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["codex-project-block"]
+
+[[windows.widgets.children.children]]
+type = "label"
+text = "{{ codex.project }}"
+class = ["codex-project"]
+
+[windows.widgets.children.children.layout]
+text_align = "start"
+max_width_chars = 26
+
+[[windows.widgets.children.children]]
+type = "label"
+text = "{{ codex.model }}"
+class = ["codex-model"]
+
+[windows.widgets.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.layout]
+hexpand = true
+spacing = 3
+
+[[windows.widgets.children]]
+type = "label"
+text = "{{ codex.activity }}"
+class = ["codex-activity"]
+
+[windows.widgets.children.layout]
+text_align = "start"
+max_width_chars = 28
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["codex-metrics"]
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["codex-stat"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+text = "本轮耗时"
+class = ["codex-caption"]
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+text = "{{ codex.elapsed }}"
+class = ["codex-metric"]
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+hexpand = true
+spacing = 5
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["codex-stat"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+text = "工具调用"
+class = ["codex-caption"]
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+text = "{{ codex.tools }}"
+class = ["codex-metric"]
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+hexpand = true
+spacing = 5
+
+[[windows.widgets.children.children]]
+type = "box"
+direction = "column"
+class = ["codex-stat"]
+
+[[windows.widgets.children.children.children]]
+type = "label"
+text = "协作"
+class = ["codex-caption"]
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+
+[[windows.widgets.children.children.children]]
+type = "label"
+text = "{{ codex.agents }}"
+class = ["codex-agents"]
+
+[windows.widgets.children.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.children.layout]
+hexpand = true
+spacing = 8
+
+[windows.widgets.children.layout]
+hexpand = true
+spacing = 12
+
+[[windows.widgets.children]]
+type = "box"
+direction = "column"
+class = ["codex-context"]
+visible = "{{ codex.context_visible }}"
+
+[[windows.widgets.children.children]]
+type = "label"
+text = "{{ codex.context_label }}"
+class = ["codex-caption"]
+
+[windows.widgets.children.children.layout]
+text_align = "start"
+
+[[windows.widgets.children.children]]
+type = "progress"
+value = "{{ codex.context_percent }}"
+class = ["codex-context-bar"]
+
+[windows.widgets.children.children.layout]
+hexpand = true
+height = 4
+
+[windows.widgets.children.layout]
+hexpand = true
+spacing = 7
+
+[[windows.widgets.children]]
+type = "box"
+direction = "row"
+class = ["codex-footer"]
+
+[[windows.widgets.children.children]]
+type = "label"
+text = "{{ codex.sessions }}"
+class = ["codex-footer-text"]
+
+[windows.widgets.children.children.layout]
+text_align = "start"
+
+[[windows.widgets.children.children]]
+type = "spacer"
+
+[[windows.widgets.children.children]]
+type = "label"
+text = "{{ codex.updated }}"
+class = ["codex-footer-text"]
+
+[windows.widgets.children.children.layout]
+text_align = "start"
+
+[windows.widgets.children.layout]
+hexpand = true
+
+[windows.widgets.layout]
+hexpand = true
+spacing = 13
+vexpand = true

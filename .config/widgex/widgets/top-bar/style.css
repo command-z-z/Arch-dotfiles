@@ -1,166 +1,77 @@
-.top-bar {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  padding: 0 20px;
-  border: 2px solid var(--ctp-surface1);
-  color: var(--ctp-text);
-  background: var(--ctp-base);
-  font-family: "Symbols Nerd Font", "FiraCode Nerd Font", "JetBrainsMono Nerd Font", "Liga SFMono Nerd Font", Inter, "WenQuanYi Zen Hei", ui-sans-serif, system-ui, sans-serif;
-  overflow: hidden;
+/* Match ~/.config/waybar/style.css (Macchiato). Scoped to the bar. */
+.native-top-bar, .native-top-bar * {
+  font-family: "Liga SFMono Nerd Font", sans-serif;
+  font-size: 25px;
 }
-
-.top-bar-left,
-.top-bar-right {
-  height: 100%;
-  align-items: center;
-  gap: 6px;
+.native-top-bar {
+  background: #24273a;
+  color: #cad3f5;
+  border: 2px solid #494d64;
+  border-radius: 25px;
+  padding: 0;
+  opacity: 0.9;
+}
+.native-top-bar button { min-width: 0; min-height: 0; padding: 0; background-image: none; box-shadow: none; }
+.native-top-bar .top-bar-module,
+.native-top-bar .top-bar-status,
+.native-top-bar .top-bar-clock {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0 12.5px;
+}
+.native-top-bar .top-bar-inherit-color { color: inherit; }
+.native-top-bar .top-bar-launcher { color: #8aadf4; }
+.native-top-bar .top-bar-workspaces {
+  margin: 10.5px 12.5px;
+  padding: 0 5px;
+  color: #f5a97f;
+  background: #363a4f;
+  border: 2px solid #494d64;
+  border-radius: 25px;
+}
+.native-top-bar .top-bar-workspace {
   min-width: 0;
+  margin: 6.25px;
+  padding: 0 12.5px;
+  background: #363a4f;
+  color: #cad3f5;
+}
+.native-top-bar .top-bar-workspace label { font-size: 35px; font-weight: bold; }
+.native-top-bar .top-bar-workspace:hover { box-shadow: inset 0 -3px #8aadf4; }
+.native-top-bar .top-bar-window { color: #f5a97f; }
+.native-top-bar .top-bar-separator { font-size: 30px; padding: 0 30px; color: #cad3f5; }
+.native-top-bar .top-bar-spotify { color: #cad3f5; }
+.native-top-bar .top-bar-cpu, .native-top-bar .top-bar-updates { color: #ed8796; }
+.native-top-bar .top-bar-memory, .native-top-bar .top-bar-network { color: #eed49f; }
+.native-top-bar .top-bar-gpu, .native-top-bar .top-bar-github { color: #8aadf4; }
+.native-top-bar .top-bar-disk, .native-top-bar .top-bar-volume { color: #cad3f5; }
+/* These modules inherit @peach from Waybar #notifications. */
+.native-top-bar .top-bar-bluetooth, .native-top-bar .top-bar-notifications { color: #f5a97f; }
+.native-top-bar .top-bar-clock { font-size: 20px; font-weight: 900; }
+
+/* Waybar group/notifications: one shared capsule around status controls. */
+.native-top-bar .top-bar-notification-group {
+  color: #f5a97f;
+  margin: 9px 12.5px;
+  padding: 11px 26.5px 12px;
+  background: #363a4f;
+  border: 2px solid #494d64;
+  border-radius: 25px;
+  font-weight: bold;
 }
 
-.top-bar-left {
-  flex: 1 1 0;
-  justify-content: flex-start;
-  max-width: 42vw;
-}
+.native-top-bar .top-bar-spotify-icon { color: #1db954; padding-right: 15px; }
 
-.top-bar-right {
-  flex: 1 1 0;
-  justify-content: flex-end;
-}
+.native-top-bar .top-bar-notification-dot { font-size: 10px; margin-top: 3px; margin-left: -3px; }
 
-.top-bar-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 520px;
-  max-width: 34vw;
-  min-width: 0;
-  justify-content: center;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
+.native-top-bar .top-bar-clock { padding: 0; }
 
-.top-bar-module,
-.top-bar-status,
-.top-bar-clock {
-  min-width: 0;
-  padding: 4px 9px;
-  border: 1px solid var(--ctp-surface1);
-  border-radius: 999px;
-  background: var(--ctp-surface0);
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1;
-  white-space: nowrap;
-}
+.native-top-bar .top-bar-clock label { font-size: 20px; font-weight: 900; }
+.native-top-bar .top-bar-clock { min-height: 59px; min-width: 145px; }
 
-.top-bar-launcher {
-  color: var(--ctp-blue);
-  cursor: pointer;
-}
+.native-top-bar .top-bar-clock, .native-top-bar .top-bar-clock label { color: #cad3f5; text-shadow: none; background-image: none; box-shadow: none; }
 
-.top-bar-inherit-color {
-  color: inherit;
-}
-
-.top-bar-window,
-.top-bar-separator {
-  color: var(--ctp-peach);
-}
-
-.top-bar-workspaces {
-  height: 100%;
-  align-items: center;
-  gap: 4px;
-  min-width: 0;
-  cursor: ns-resize;
-}
-
-.top-bar-workspace {
-  min-width: 34px;
-  justify-content: center;
-  color: var(--ctp-peach);
-  cursor: pointer;
-  transition:
-    background 120ms ease,
-    border-color 120ms ease,
-    color 120ms ease;
-}
-
-.top-bar-workspace:hover {
-  border-color: color-mix(in srgb, var(--ctp-peach) 75%, transparent);
-  background: color-mix(in srgb, var(--ctp-peach) 14%, transparent);
-}
-
-.top-bar-window {
-  display: block;
-  max-width: 220px;
-  overflow: hidden;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.top-bar-separator {
-  padding: 0 9px;
-  font-size: 18px;
-  line-height: 1;
-}
-
-.top-bar-spotify {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  color: var(--ctp-green);
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.top-bar-gpu,
-.top-bar-cpu {
-  color: var(--ctp-red);
-}
-
-.top-bar-memory,
-.top-bar-network {
-  color: var(--ctp-yellow);
-}
-
-.top-bar-disk,
-.top-bar-github {
-  color: var(--ctp-blue);
-}
-
-.top-bar-volume,
-.top-bar-clock {
-  color: var(--ctp-text);
-}
-
-.top-bar-bluetooth {
-  color: var(--ctp-sky);
-}
-
-.top-bar-updates,
-.top-bar-notifications {
-  color: var(--ctp-red);
-}
-
-.top-bar-status {
-  cursor: default;
-}
-
-.top-bar-volume,
-.top-bar-network,
-.top-bar-bluetooth,
-.top-bar-github,
-.top-bar-notifications {
-  cursor: pointer;
-}
+/* Native GTK tooltip windows use the Waybar palette. */
+tooltip { background: #24273a; border: 1px solid #8aadf4; border-radius: 12px; }
+tooltip label { color: white; font-family: "Liga SFMono Nerd Font", monospace; font-size: 18px; padding: 8px; }
