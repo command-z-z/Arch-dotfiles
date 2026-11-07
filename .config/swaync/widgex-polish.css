@@ -1,0 +1,111 @@
+/* Widgex integration: Macchiato, compact hierarchy, quiet surfaces.
+ * Selectors intentionally outrank the original stylesheet below the import. */
+.control-center.control-center {
+  background: @base;
+  border: 1px solid @surface1;
+  border-radius: 24px;
+  padding: 12px;
+}
+.control-center * {
+  font-family: "Symbols Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
+}
+.control-center .widget-title {
+  margin: 8px 10px 14px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.control-center .widget-title > button {
+  font-size: 20px;
+  min-width: 36px;
+  min-height: 36px;
+  border: 1px solid @surface0;
+  border-radius: 12px;
+  background: @mantle;
+  color: @subtext0;
+  box-shadow: none;
+  transition: background 160ms ease, color 160ms ease;
+}
+.control-center .widget-title > button:hover {
+  background: @surface0;
+  color: @red;
+}
+.control-center .widget-dnd {
+  margin: 0 10px 12px;
+  font-size: 16px;
+}
+.control-center .widget-dnd > switch {
+  border: 1px solid @surface1;
+  border-radius: 16px;
+  background: @mantle;
+  min-height: 26px;
+}
+.control-center .widget-dnd > switch:checked { background: @blue; }
+.control-center .widget-dnd > switch slider {
+  min-width: 22px;
+  min-height: 22px;
+  border-radius: 12px;
+  background: @text;
+  box-shadow: none;
+}
+.control-center .widget-buttons-grid { margin: 0 8px 12px; }
+.control-center .widget-buttons-grid > flowbox > flowboxchild > button {
+  min-height: 42px;
+  border: 1px solid @surface0;
+  border-radius: 12px;
+  background: @mantle;
+  color: @blue;
+  font-size: 24px;
+  box-shadow: none;
+  transition: background 160ms ease;
+}
+.control-center .widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: @surface0;
+}
+.control-center .widget-buttons-grid > flowbox > flowboxchild > button:active {
+  background: @blue;
+  color: @crust;
+}
+.control-center .notification {
+  background: @mantle;
+  border: 1px solid @surface0;
+  border-radius: 16px;
+  margin: 6px 8px;
+  box-shadow: none;
+}
+.control-center .notification .notification-default-action { border-radius: 14px; }
+.control-center .notification .notification-default-action:hover,
+.control-center .notification .notification-action:hover { background: @surface0; }
+.control-center .notification .summary { font-size: 15px; color: @text; }
+.control-center .notification .body { font-size: 14px; color: @subtext0; }
+.control-center .notification .time { font-size: 12px; color: @overlay2; }
+.control-center .notification.critical { border-color: @red; }
+.control-center .widget-volume {
+  margin: 12px 8px 8px;
+  padding: 12px;
+  border: 1px solid @surface0;
+  border-radius: 14px;
+  background: @mantle;
+  font-size: 22px;
+}
+.control-center .widget-volume scale trough {
+  min-height: 6px;
+  border-radius: 6px;
+  background: @surface0;
+}
+.control-center .widget-volume scale highlight { background: @blue; border-radius: 6px; }
+.control-center .widget-volume scale slider {
+  background: @text;
+  min-width: 14px;
+  min-height: 14px;
+  box-shadow: none;
+}
+.control-center .widget-mpris .widget-mpris-player {
+  margin: 8px;
+  padding: 8px;
+  border: 1px solid @surface0;
+  border-radius: 16px;
+  box-shadow: none;
+}
+.control-center .widget-mpris .widget-mpris-title { font-size: 18px; }
+.control-center .widget-mpris .widget-mpris-subtitle { font-size: 14px; color: @subtext0; }
+.control-center .widget-mpris button { border-radius: 10px; }

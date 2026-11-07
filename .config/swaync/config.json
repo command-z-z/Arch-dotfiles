@@ -1,49 +1,74 @@
 {
-    "$schema": "/etc/xdg/swaync/configSchema.json",
-    "positionX": "right",
-    "positionY": "top",
-    "control-center-margin-top": 0,
-    "control-center-margin-bottom": 10,
-    "control-center-margin-right": 25,
-    "control-center-margin-left": 10,
-    "notification-icon-size": 48,
-    "notification-body-image-height": 100,
-    "notification-body-image-width": 200,
-    "timeout": 5,
-    "timeout-low": 5,
-    "timeout-critical": 0,
-    "fit-to-screen": false,
-    "control-center-height": 800,
-    "control-center-width": 600,
-    "notification-window-width": 500,
-    "keyboard-shortcuts": true,
-    "image-visibility": "when-available",
-    "transition-time": 200,
-    "hide-on-clear": false,
-    "hide-on-action": true,
-    "script-fail-notify": true,
-    "widgets": [
-        "title",
-        "dnd",
-        "notifications",
-        "volume",
-        "mpris"
-    ],
-    "widget-config": {
-        "title": {
-            "text": "󰂚 Notifications",
-            "clear-all-button": true,
-            "button-text": "󰎟 "
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+  "positionX": "right",
+  "positionY": "top",
+  "control-center-exclusive-zone": true,
+  "control-center-margin-top": 0,
+  "control-center-margin-bottom": 10,
+  "control-center-margin-right": 25,
+  "control-center-margin-left": 10,
+  "notification-icon-size": 32,
+  "notification-body-image-height": 100,
+  "notification-body-image-width": 200,
+  "timeout": 5,
+  "timeout-low": 5,
+  "timeout-critical": 0,
+  "fit-to-screen": false,
+  "control-center-height": 800,
+  "control-center-width": 600,
+  "notification-window-width": 500,
+  "keyboard-shortcuts": true,
+  "image-visibility": "when-available",
+  "transition-time": 200,
+  "hide-on-clear": false,
+  "hide-on-action": true,
+  "script-fail-notify": true,
+  "widgets": [
+    "title",
+    "dnd",
+    "buttons-grid",
+    "notifications",
+    "volume",
+    "mpris"
+  ],
+  "widget-config": {
+    "buttons-grid": {
+      "buttons-per-row": 3,
+      "actions": [
+        {
+          "label": "󰋋",
+          "command": "pavucontrol"
         },
-        "dnd": {
-            "text": "Do Not Disturb"
+        {
+          "label": "󰤨",
+          "command": "nm-connection-editor"
         },
-        "mpris": {
-            "image-size": 96,
-            "image-radius": 12
-        },
-        "volume": {
-            "label": "󰕾 "
+        {
+          "label": "󰂯",
+          "command": "blueman-manager"
         }
+      ]
+    },
+    "title": {
+      "text": "󰂚 Notifications",
+      "clear-all-button": true,
+      "button-text": "󰎟 "
+    },
+    "dnd": {
+      "text": "Do Not Disturb"
+    },
+    "mpris": {
+      "image-size": 96,
+      "image-radius": 12
+    },
+    "volume": {
+      "label": "󰕾 "
     }
+  },
+  "notification-visibility": {
+    "wechat": {
+      "state": "enabled",
+      "app-name": "^(WeChat|wechat|微信|WeChatAppEx)$"
+    }
+  }
 }
