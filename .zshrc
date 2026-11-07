@@ -47,3 +47,15 @@ export FZF_DEFAULT_OPTS=" \
 
 # starship theme
 eval "$(starship init zsh)"
+
+# bun completions
+[ -s "/home/eugene/.bun/_bun" ] && source "/home/eugene/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# User-installed command-line tools (including Widgex).
+typeset -U path PATH
+path=("$HOME/.local/bin" $path)
+export PATH
