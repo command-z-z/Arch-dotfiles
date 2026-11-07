@@ -7,7 +7,7 @@
 - **Widget System** • [Eww](https://github.com/elkowar/eww)🔔 ElKowars wacky widgets!
 - **Terminal** • [Kitty](https://github.com/kovidgoyal/kitty) 💻 A powerful term with gpu support!
 - **Shell** • [Zsh](https://www.zsh.org/) with Theme [Starship](https://github.com/starship/starship)🐚 Cross Shell Platform!
-- **Application Launcher** • [Rofi](https://github.com/davatorium/rofi)🚀 Realmente rápido y customizable!
+- **Application Launcher** • [Hyprlauncher](https://github.com/hyprwm/hyprlauncher)
 - **Notify Daemon** • [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)📠 A simple GTK based notification daemon with modern UI!
 - **File Manager** • [Ranger](https://github.com/ranger/ranger)📁 A VIM-inspired filemanager for the console!
 - **File Manager GUI** • [Nemo](https://github.com/linuxmint/nemo)📂 File browser for Cinnamon!
@@ -77,6 +77,16 @@ paru -S qutebrowser
 </details>
 
 ### 🚀 Manual Installation
+
+The active Hyprland configuration is `.config/hypr/hyprland.lua`; the former
+`hyprland.conf` is available in Git history. Hypridle locks the session after
+10 minutes of inactivity and powers off displays after 15 minutes, without
+suspending the computer.
+
+The Lua startup configuration launches Waybar, Eww and SwayNC. Widgex is an
+additional manually started profile; see [its README](.config/widgex/README.md).
+Generated artwork, lyrics, Python bytecode and application state are excluded
+from version control; the Eww fallback cover remains a tracked resource.
 
 1.Clone this repository with some related repositories.
 
