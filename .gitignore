@@ -1,0 +1,22 @@
+# Python runtime artifacts
+__pycache__/
+*.py[cod]
+
+# Local agent workspace files
+/.codex
+/.agents/
+/.aws/
+
+# Generated music artwork and lyrics; keep the bundled fallback image
+/.config/eww/spotify_cache/*
+!/.config/eww/spotify_cache/default.png
+/.config/widgex/spotify_cache/
+
+# Application state and personal notes
+/.config/lazygit/state.yml
+/.config/widgex/widgets/memo/notes/
+
+# Local configuration snapshots
+/.config/hypr/backups/
+*.before-*
+*.bak-*
