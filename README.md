@@ -7,7 +7,7 @@
 - **Widget System** • [Eww](https://github.com/elkowar/eww)🔔 ElKowars wacky widgets!
 - **Terminal** • [Kitty](https://github.com/kovidgoyal/kitty) 💻 A powerful term with gpu support!
 - **Shell** • [Zsh](https://www.zsh.org/) with Theme [Starship](https://github.com/starship/starship)🐚 Cross Shell Platform!
-- **Application Launcher** • [Hyprlauncher](https://github.com/hyprwm/hyprlauncher)
+- **Application Launcher** • [Hyprlauncher](https://github.com/hyprwm/hyprlauncher) 🚀 An application launcher for Hyprland!
 - **Notify Daemon** • [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)📠 A simple GTK based notification daemon with modern UI!
 - **File Manager** • [Ranger](https://github.com/ranger/ranger)📁 A VIM-inspired filemanager for the console!
 - **File Manager GUI** • [Nemo](https://github.com/linuxmint/nemo)📂 File browser for Cinnamon!
